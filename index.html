@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LBG: Lega Bloodbowl Giocomagazzino</title>
+    <meta name="description"
+          content="Il sito web ufficiale della Lega Bloodbowl Giocomagazzino (LBG), la tua comunità di Blood Bowl a Roma. Resta aggiornato su tornei, news e unisciti alla nostra passione per il gioco!">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Link al CSS esterno -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- Aggiunta classe 'index' al body -->
+<body class="index">
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v22.0"></script>
+<nav class="navbar">
+    <div class="navbar-logo">
+        <img src="img index/logo lbg.png" alt="Logo LBG"> <!-- Altezza rimossa, gestita da CSS -->
+    </div>
+    <ul class="navbar-links">
+        <!-- Aggiunta classe 'active' -->
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="roccageddon.html">Roccageddon</a></li>
+        <li><a href="gilda.html">Gilda Latium Bloodbowl</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="chisiamo.html">Chi Siamo</a></li>
+    </ul>
+    <div class="menu-toggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="mobile-nav">
+        <!-- Aggiunta classe 'active' -->
+        <a href="index.html" class="active">Home</a>
+        <a href="roccageddon.html">Roccageddon</a>
+        <a href="gilda.html">Gilda Latium Bloodbowl</a>
+        <a href="news.html">News</a>
+        <a href="chisiamo.html">Chi Siamo</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Benvenuti nel sito della LBG!</h1>
+        <p class="hero-subtitle">Ciao! Siamo un gruppo di appassionati di BloodBowl provenienti dal basso Lazio, seguiteci
+            qui e sui nostri social per rimanere sempre aggiornati sulle nostre attività!</p>
+    </div>
+</header>
+
+<!-- Sezione social -->
+<section class="section social-feeds-section">
+    <h2 class="section-title">Seguici sui Social!</h2>
+    <div class="social-feeds-container">
+
+        <!-- Box per il Feed Facebook -->
+        <div class="feed-box facebook-feed">
+            <h3><i class="fab fa-facebook-square"></i> Facebook</h3>
+            <div class="feed-content" id="facebook-feed-content">
+
+                <!-- *** CODICE FACEBOOK INSERITO CORRETTAMENTE *** -->
+                <div class="fb-page"
+                     data-href="https://www.facebook.com/profile.php?id=61561901220806"
+                     data-tabs="timeline"
+                     data-width="" <!-- Lascia vuoto o rimuovi -->
+                     data-height="" <!-- Lascia vuoto o rimuovi -->
+                     data-small-header="true" <!-- Prova true -->
+                     data-adapt-container-width="true"
+                     data-hide-cover="true" <!-- Prova true -->
+                     data-show-facepile="false"> <!-- Prova false -->
+                     <blockquote cite="https://www.facebook.com/profile.php?id=61561901220806" class="fb-xfbml-parse-ignore">
+                         <a href="https://www.facebook.com/profile.php?id=61561901220806">Lega BloodBowl GiocoMagazzino</a>
+                     </blockquote>
+                </div>
+                <!-- *** FINE CODICE FACEBOOK *** -->
+
+            </div>
+        </div>
+
+
+
+        <!-- Box per il Feed Instagram -->
+        <div class="feed-box instagram-feed">
+            <h3><i class="fab fa-instagram-square"></i> Instagram</h3>
+            <div class="feed-content" id="instagram-feed-content">
+                <!-- Qui verrà incorporato il feed di Instagram -->
+                <!-- LightWidget WIDGET -->
+                 <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/ba2bb7d0a3075754be99f32d2570418c.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Fine nuova sezione -->
+
+
+<section class="section">
+    <h2 class="section-title">Le ultime News dal blog del baffo!</h2>
+    <ul class="news-list" id="index-news-list">
+        <!-- Le news verranno caricate qui da JavaScript -->
+        <p>Caricamento ultime notizie...</p> <!-- Messaggio temporaneo -->
+    </ul>
+</section>
+
+<section class="section">
+    <h2 class="section-title">Roccageddon: Il Nostro Torneo NAF!</h2>
+    <!-- Contenuto Roccageddon rimane invariato -->
+    <div class="roccageddon-info">
+        <img src="img index/roccageddon.png" alt="Immagine Placeholder Roccageddon">
+        <p>Il Roccageddon è il nostro annuale torneo NAF! Un evento imperdibile per tutti gli appassionati di Blood
+            Bowl della regione e non solo! Preparati a divertirti un sacco e mangiare altrettanto!</p>
+        <p>
+            <a href="roccageddon.html">Vai alla pagina del Roccageddon per maggiori dettagli</a>
+        </p>
+    </div>
+</section>
+
+<footer class="contact-social" id="contact-social">
+    <!-- Contenuto footer rimane invariato -->
+    <div class="contact-info">
+        <h2>Contattaci</h2>
+        <p>Hai domande o vuoi unirti alla LBG?</p>
+        <p>Scrivici a: <a href="mailto:legabloodbowlgiocomagazzino@gmail.com">legabloodbowlgiocomagazzino@gmail.com</a></p>
+    </div>
+    <div class="social-links">
+        <h3>Seguici sui Social</h3>
+        <a href="https://www.facebook.com/profile.php?id=61561901220806" target="_blank"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://lbgi.blogspot.com" target="_blank"><i class="fas fa-blog"></i></a>
+        <a href="https://www.instagram.com/lega_bloodbowl_giocomagazzino/" target="_blank"><i class="fab fa-instagram-square"></i></a>
+    </div>
+</footer>
+
+<!-- Link allo script JS esterno (per menu mobile, ecc.) -->
+<script src="script.js"></script>
+
+<!-- Script per caricare le news nella Home (CON LAYOUT AFFIANCATO) -->
+<script>
+    // Funzione callback per gestire i dati del feed Blogspot
+    function handleindexBlogPosts(data) {
+        const newsContainer = document.getElementById('index-news-list');
+        if (!newsContainer) {
+            console.error("Elemento con ID 'index-news-list' non trovato.");
+            return;
+        }
+        newsContainer.innerHTML = ''; // Pulisce il contenitore
+
+        if (data.feed && data.feed.entry && data.feed.entry.length > 0) {
+            const posts = data.feed.entry; // Già solo 2 dal feed
+            posts.forEach(post => {
+                const postTitle = post.title.$t;
+                let postUrl = '#';
+                if (post.link) {
+                    const alternateLink = post.link.find(link => link.rel === 'alternate');
+                    if (alternateLink) {
+                        postUrl = alternateLink.href;
+                    }
+                }
+                const postDate = new Date(post.published.$t).toLocaleDateString('it-IT', {
+                    year: 'numeric', month: 'long', day: 'numeric'
+                });
+
+                // Estrai sommario
+                let postContentHtml = post.content ? post.content.$t : (post.summary ? post.summary.$t : '');
+                const tempDivSummary = document.createElement('div');
+                tempDivSummary.innerHTML = postContentHtml;
+                let textContent = tempDivSummary.textContent || tempDivSummary.innerText || "";
+                const summary = textContent.substring(0, 150) + (textContent.length > 150 ? '...' : ''); // Sommario più breve
+
+                // Estrai thumbnail URL (logica identica a news.html)
+                let thumbnailUrl = null;
+                if (post.media$thumbnail && post.media$thumbnail.url) {
+                    thumbnailUrl = post.media$thumbnail.url.replace(/\/s\d+(-c)?\//, '/s800/');
+                }
+                if (!thumbnailUrl && postContentHtml) {
+                    const tempDivContent = document.createElement('div');
+                    tempDivContent.innerHTML = postContentHtml;
+                    const firstImage = tempDivContent.querySelector('img');
+                    if (firstImage && firstImage.src) {
+                        thumbnailUrl = firstImage.src;
+                        thumbnailUrl = thumbnailUrl.replace(/\/s\d+(-c)?\//, '/s640/');
+                    }
+                }
+
+                const listItem = document.createElement('li');
+                // *** AGGIUNTA CLASSE per attivare stile flexbox dal CSS ***
+                if (thumbnailUrl) { // Aggiungi la classe solo se c'è un thumbnail
+                    listItem.classList.add('has-thumbnail');
+                }
+
+                // Costruisci l'HTML con il thumbnail (se presente) e il contenitore per il testo
+                let thumbnailHtml = '';
+                if (thumbnailUrl) {
+                    // *** USA CLASSE 'news-thumbnail' ***
+                    thumbnailHtml = `<img src="${thumbnailUrl}" alt="Thumbnail per ${postTitle}" class="news-thumbnail" loading="lazy">`;
+                }
+
+                // *** STRUTTURA HTML COME IN news.html ***
+                listItem.innerHTML = `
+                    ${thumbnailHtml}
+                    <div class="news-content">
+                        <h3><a href="${postUrl}" target="_blank" rel="noopener noreferrer">${postTitle}</a></h3>
+                        <small>${postDate}</small>
+                        <p>${summary} <a href="${postUrl}" target="_blank" rel="noopener noreferrer">Leggi tutto</a></p>
+                    </div>
+                `;
+                // *** FINE MODIFICA HTML ***
+
+                newsContainer.appendChild(listItem);
+            });
+        } else {
+            newsContainer.innerHTML = '<p>Nessuna notizia recente trovata.</p>';
+        }
+    }
+
+    // Funzione per caricare lo script del feed JSONP (invariata nella logica di caricamento)
+    function loadindexBlogFeed() {
+        const newsContainer = document.getElementById('index-news-list');
+        if (newsContainer && newsContainer.innerHTML.includes('Caricamento')) {
+             // Messaggio già presente
+        } else if (newsContainer && !newsContainer.innerHTML.trim()) {
+             newsContainer.innerHTML = '<p>Caricamento ultime notizie...</p>';
+        }
+
+        // Richiedi solo 2 risultati e usa la callback corretta
+        const blogUrl = 'https://lbgi.blogspot.com/feeds/posts/default?max-results=2&alt=json-in-script&callback=handleindexBlogPosts';
+        const script = document.createElement('script');
+        script.src = blogUrl;
+        script.async = true;
+        script.onerror = function() {
+            console.error('Errore nel caricamento dello script del feed Blogspot per la index.');
+            if (newsContainer && (newsContainer.innerHTML.includes('Caricamento') || !newsContainer.innerHTML.trim())) {
+                newsContainer.innerHTML = '<p>Impossibile caricare le ultime notizie.</p>';
+            }
+            try { delete window.handleindexBlogPosts; } catch(e) { window.handleindexBlogPosts = undefined; }
+        };
+        document.body.appendChild(script);
+    }
+
+    // Chiama la funzione per caricare il feed quando il DOM è pronto
+    document.addEventListener('DOMContentLoaded', loadindexBlogFeed);
+</script>
+
+</body>
+</html>
+

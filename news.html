@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Link al CSS esterno -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- Classe 'news' aggiunta al body -->
+<body class="news">
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="img index/logo lbg.png" alt="Logo LBG">
+        </div>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="roccageddon.html">Roccageddon</a></li>
+            <li><a href="gilda.html">Gilda Latium Bloodbowl</a></li>
+            <!-- Aggiunta classe 'active' -->
+            <li><a href="news.html" class="active">News</a></li>
+            <li><a href="chisiamo.html">Chi Siamo</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="mobile-nav">
+            <a href="index.html">Home</a>
+            <a href="roccageddon.html">Roccageddon</a>
+            <a href="gilda.html">Gilda Latium Bloodbowl</a>
+            <!-- Aggiunta classe 'active' -->
+            <a href="news.html" class="active">News</a>
+            <a href="chisiamo.html">Chi Siamo</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Ultime News</h1>
+            <p class="hero-subtitle">Rimani aggiornato sulle ultime novità della LBG</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <ul class="news-list" id="news-container">
+            <!-- Il contenuto verrà caricato dinamicamente qui -->
+            <!-- Messaggio iniziale gestito da JS -->
+        </ul>
+    </section>
+
+    <footer class="contact-social" id="contact-social">
+        <!-- Contenuto footer rimane invariato -->
+        <div class="contact-info">
+            <h2>Contattaci</h2>
+            <p>Hai domande o vuoi unirti alla LBG?</p>
+            <p>Scrivici a: <a href="mailto:legabloodbowlgiocomagazzino@gmail.com">legabloodbowlgiocomagazzino@gmail.com</a></p>
+        </div>
+        <div class="social-links">
+            <h3>Seguici sui Social</h3>
+            <a href="https://www.facebook.com/profile.php?id=61561901220806" target="_blank"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://lbgi.blogspot.com" target="_blank"><i class="fas fa-blog"></i></a>
+            <a href="https://www.instagram.com/lega_bloodbowl_giocomagazzino/" target="_blank"><i class="fab fa-instagram-square"></i></a>
+        </div>
+    </footer>
+
+    <!-- Link allo script JS esterno (per il menu mobile) -->
+    <script src="script.js"></script>
+    <!-- Script specifico per caricare le news (CON MODIFICA PER THUMBNAIL) -->
+    <script>
+        // 1. Definisci la funzione callback che verrà chiamata da Blogspot
+        function handleBlogPosts(data) {
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = ''; // Pulisce il contenitore
+
+            if (data.feed && data.feed.entry && data.feed.entry.length > 0) {
+                const posts = data.feed.entry;
+                posts.forEach(post => {
+                    const postTitle = post.title.$t;
+                    // Trova il link corretto all'articolo
+                    let postUrl = '#';
+                    if (post.link) {
+                       const alternateLink = post.link.find(link => link.rel === 'alternate');
+                       if (alternateLink) {
+                           postUrl = alternateLink.href;
+                       }
+                    }
+
+                    const postDate = new Date(post.published.$t).toLocaleDateString('it-IT', {
+                        year: 'numeric', month: 'long', day: 'numeric'
+                    });
+
+                    // Estrai un sommario
+                    let postContentHtml = post.content ? post.content.$t : (post.summary ? post.summary.$t : '');
+                    const tempDivSummary = document.createElement('div');
+                    tempDivSummary.innerHTML = postContentHtml;
+                    let textContent = tempDivSummary.textContent || tempDivSummary.innerText || "";
+                    const summary = textContent.substring(0, 200) + (textContent.length > 200 ? '...' : '');
+
+                    // Estrai l'URL del thumbnail (con fallback dal contenuto)
+                    let thumbnailUrl = null;
+
+                    // 1. Prova prima con media$thumbnail e chiedi una dimensione grande
+                    if (post.media$thumbnail && post.media$thumbnail.url) {
+                        // Chiedi una dimensione grande (es. 800px)
+                        thumbnailUrl = post.media$thumbnail.url.replace(/\/s\d+(-c)?\//, '/s800/');
+                        // console.log("Tentativo con media$thumbnail:", thumbnailUrl);
+                    }
+
+                    // 2. Se media$thumbnail non ha funzionato, prova a prendere l'immagine dal contenuto
+                    if (!thumbnailUrl && postContentHtml) {
+                        const tempDivContent = document.createElement('div');
+                        tempDivContent.innerHTML = postContentHtml;
+                        const firstImage = tempDivContent.querySelector('img');
+
+                        if (firstImage && firstImage.src) {
+                            thumbnailUrl = firstImage.src; // Prendi l'URL originale
+                            // console.log("URL originale dal contenuto:", thumbnailUrl);
+
+                            // *** MODIFICA APPLICATA: Prova a chiedere una versione più grande ***
+                            // Sostituisce eventuali /sXXX/ o /sXXX-c/ con /s640/ (o s800)
+                            // Se non trova un pattern /s.../, l'URL rimane invariato
+                            thumbnailUrl = thumbnailUrl.replace(/\/s\d+(-c)?\//, '/s640/'); // Puoi usare s800 se preferisci
+                            // console.log("URL modificato dal contenuto:", thumbnailUrl);
+                        }
+                    }
+
+                    const listItem = document.createElement('li');
+
+                    // Costruisci l'HTML con il thumbnail (se presente)
+                    let thumbnailHtml = '';
+                    if (thumbnailUrl) {
+                        // L'attributo width="200" è un suggerimento, il CSS prevarrà
+                        thumbnailHtml = `<img src="${thumbnailUrl}" alt="Thumbnail per ${postTitle}" class="news-thumbnail" loading="lazy" width="800">`;
+                    }
+
+                    listItem.innerHTML = `
+                        ${thumbnailHtml}
+                        <div class="news-content">
+                            <h3><a href="${postUrl}" target="_blank" rel="noopener noreferrer">${postTitle}</a></h3>
+                            <small>${postDate}</small>
+                            <p>${summary} <a href="${postUrl}" target="_blank" rel="noopener noreferrer">Leggi tutto</a></p>
+                        </div>
+                    `;
+
+                    newsContainer.appendChild(listItem);
+                });
+            } else {
+                newsContainer.innerHTML = '<p>Nessun post trovato nel blog o feed non valido.</p>';
+            }
+        }
+
+        // Funzione per caricare lo script del feed JSONP (invariata)
+        function loadBlogFeed() {
+            const newsContainer = document.getElementById('news-container');
+            if (!newsContainer.innerHTML.trim()) {
+                 newsContainer.innerHTML = '<p>Caricamento delle ultime notizie...</p>';
+            }
+            const blogUrl = 'https://lbgi.blogspot.com/feeds/posts/default?max-results=5&alt=json-in-script&callback=handleBlogPosts';
+            const script = document.createElement('script');
+            script.src = blogUrl;
+            script.async = true;
+            script.onerror = function() {
+                console.error('Errore nel caricamento dello script del feed Blogspot.');
+                if (newsContainer.innerHTML.includes('Caricamento') || !newsContainer.innerHTML.trim()) {
+                    newsContainer.innerHTML = '<p>Impossibile caricare le ultime notizie dal blog. Controlla la console per dettagli.</p>';
+                }
+                // Pulisce la callback globale in caso di errore per evitare problemi futuri
+                try { delete window.handleBlogPosts; } catch(e) { window.handleBlogPosts = undefined; }
+            };
+            document.body.appendChild(script);
+        }
+
+        // Chiama la funzione per caricare il feed quando il DOM è pronto (invariata)
+        document.addEventListener('DOMContentLoaded', loadBlogFeed);
+    </script>
+</body>
+</html>

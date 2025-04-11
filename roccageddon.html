@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roccageddon - Il Torneo LBG</title>
+    <meta name="description" content="Scopri tutto sul Roccageddon, il torneo annuale di Blood Bowl organizzato dalla LBG. Guarda le classifiche e le foto delle edizioni passate.">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Non serve slick-theme.css se personalizziamo tutto -->
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Il tuo CSS personalizzato -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="roccageddon-page"> <!-- Classe per stili specifici -->
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="index.html"><img src="img index/logo lbg.png" alt="Logo LBG"></a>
+    </div>
+    <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="roccageddon.html" class="active">Roccageddon</a></li>
+        <li><a href="gilda.html">Gilda Latium Bloodbowl</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="chisiamo.html">Chi Siamo</a></li>
+    </ul>
+    <div class="menu-toggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="roccageddon.html" class="active">Roccageddon</a>
+        <a href="gilda.html">Gilda Latium Bloodbowl</a>
+        <a href="news.html">News</a>
+        <a href="chisiamo.html">Chi Siamo</a>
+    </div>
+</nav>
+
+<!-- Hero specifico per Roccageddon -->
+<header class="hero roccageddon-hero"> <!-- Aggiunta classe specifica se serve -->
+    <div class="hero-content">
+        <h1 class="hero-title">Roccageddon</h1>
+        <p class="hero-subtitle">Il torneo annuale di Blood Bowl della Lega Bloodbowl Giocomagazzino!</p>
+    </div>
+    <!-- L'immagine di sfondo è gestita da CSS tramite .roccageddon-page .hero::before -->
+</header>
+
+<main>
+    <!-- Sezione Introduttiva -->
+    <section class="sezione-intro"> <!-- Classe specifica per stile intro -->
+        <h2>Cos'è il Roccageddon?</h2>
+        <p>Il Roccageddon è l'evento clou dell'anno per la LBG! Un torneo NAF che riunisce giocatori da tutta la regione (e oltre) nel piccolo comunque di Arce (FR).</p>
+        <p>Nato nel 2024, il Roccageddon sta diventando sempre più un appuntamento fisso per la nostra community e dal 2025 siamo fieramente tappa del CIBB, il campionato italiano! </p>
+        <p>Qui sotto puoi rivivere le edizioni passate, purtroppo senza poter assaporare l'ottimo cibo di Giò.... per quello dovreste venire di persona!</p>
+    </section>
+
+    <!-- Edizione 2025 -->
+    <section class="edizione-roccageddon" id="roccageddon-2025"> <!-- ID per sfondo e targeting JS -->
+        <h2>Edizione 2025</h2>
+        <p>L'ultima edizione del Roccageddon si è tenuta il 5/6 Aprile 2025</p>
+        <h3>Classifica Finale 2025</h3>
+        <img src="img roccageddon/classifica2025.jpg" alt="Classifica Finale Roccageddon 2025" class="classifica-immagine">
+        <p>Complimenti a Serafino per la pulitissima vittoria!</p>
+        <h4>Premiazioni!</h4>
+        <ul>
+            <li><strong>Primo Classificato:</strong> Serafino</li>
+            <li><strong>Secondo Classificato:</strong> Nightsword</li>
+            <li><strong>Terzo Classificato:</strong> Didle</li>
+            <li><strong>Most Touchdown:</strong> LeMat</li>
+            <li><strong>Most Casualties:</strong> Kellus</li>
+            <li><strong>Best Defense:</strong> Wago</li>
+            <li><strong>Premio Pittura:</strong> Azaghor</li>
+            <li><strong>Best Emmia:</strong> Zio_kirie</li>
+        </ul>
+
+        <!-- Galleria Foto 2025 -->
+         <br><br> <!-- Mantenuti i <br> se vuoi quello spazio -->
+        <button class="mostra-galleria-btn" data-target="#galleria-2025">Mostra Foto 2025</button>
+        <!-- Contenitore galleria con ID univoco -->
+        <div class="galleria-foto" id="galleria-2025">
+            <!-- Le immagini verranno aggiunte qui da JavaScript -->
+        </div>
+    </section>
+
+    <!-- Edizione 2024 -->
+    <section class="edizione-roccageddon" id="roccageddon-2024"> <!-- ID per sfondo e targeting JS -->
+        <h2>Edizione 2024</h2>
+        <p>La primissima edizione del 2024 si è svolta a cavallo tra il 31 Agosto e il 1° Settembre.</p>
+        <h3>Classifica Finale 2024</h3>
+        <img src="img roccageddon/classifica2024.jpg" alt="Classifica Finale Roccageddon 2024" class="classifica-immagine">
+        <p>Il trofeo quell'anno andò a Janninu, che conquista così la sua prima vittoria all'estero!</p>
+        <h4>Premiazioni!</h4>
+        <ul>
+            <li><strong>Primo Classificato:</strong> Janninu</li>
+            <li><strong>Secondo Classificato:</strong> Lorichsuet</li>
+            <li><strong>Terzo Classificato:</strong> Flea</li>
+            <li><strong>Most Touchdown:</strong> Realmalteser</li>
+            <li><strong>Most Casualties:</strong> djangothepaintrain</li>
+            <li><strong>Best Defense:</strong> Ferpa</li>
+            <li><strong>Premio Pittura:</strong> Psychomystile</li>
+            <li><strong>Best Emmia:</strong> LordBertoCaos</li>
+        </ul>
+
+        <!-- Galleria Foto 2024 -->
+         <br><br> <!-- Mantenuti i <br> se vuoi quello spazio -->
+        <button class="mostra-galleria-btn" data-target="#galleria-2024">Mostra Foto 2024</button>
+        <!-- Contenitore galleria con ID univoco -->
+        <div class="galleria-foto" id="galleria-2024">
+            <!-- Le immagini verranno aggiunte qui da JavaScript -->
+        </div>
+    </section>
+
+</main>
+
+<footer class="contact-social" id="contact-social">
+    <div class="contact-info">
+        <h2>Contattaci</h2>
+        <p>Hai domande o vuoi unirti alla LBG?</p>
+        <p>Scrivici a: <a href="mailto:legabloodbowlgiocomagazzino@gmail.com">legabloodbowlgiocomagazzino@gmail.com</a></p>
+    </div>
+    <div class="social-links">
+        <h3>Seguici sui Social</h3>
+        <a href="https://www.facebook.com/profile.php?id=61561901220806" target="_blank" aria-label="Facebook LBG"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://lbgi.blogspot.com" target="_blank" aria-label="Blog LBG"><i class="fas fa-blog"></i></a>
+        <a href="https://www.instagram.com/lega_bloodbowl_giocomagazzino/" target="_blank" aria-label="Instagram LBG"><i class="fab fa-instagram-square"></i></a>
+    </div>
+</footer>
+
+<!-- Script necessari -->
+<!-- jQuery (richiesto da Slick) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Slick Carousel JS -->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!-- Il tuo script globale (per il menu mobile, ecc.) -->
+<script src="script.js"></script>
+<!-- Script di inizializzazione per i caroselli Slick E GENERAZIONE IMMAGINI -->
+<script>
+    $(document).ready(function () {
+        // --- Generazione dinamica immagini 2025 (invariato) ---
+        const galleria2025 = $('#galleria-2025');
+        const basePath2025 = 'img roccageddon/Foto 2025/';
+        const numeroFoto2025 = 15;
+        const nomeBaseFoto2025 = 'Roccageddon_2025-';
+        const estensioneFoto2025 = '.jpg';
+        if (galleria2025.length) {
+            for (let i = 1; i <= numeroFoto2025; i++) {
+                const numeroFormattato2025 = i.toString().padStart(2, '0');
+                const nomeFile2025 = nomeBaseFoto2025 + numeroFormattato2025 + estensioneFoto2025;
+                const altText2025 = `Foto Roccageddon 2025 - ${numeroFormattato2025}`;
+                const imageHtml2025 = `<div><img src="${basePath2025}${nomeFile2025}" alt="${altText2025}" loading="lazy"></div>`;
+                galleria2025.append(imageHtml2025);
+            }
+            console.log(`Aggiunte ${numeroFoto2025} immagini alla galleria 2025.`);
+        } else {
+            console.warn("Contenitore galleria 2025 non trovato.");
+        }
+        // --- Fine generazione 2025 ---
+
+
+        // --- Generazione dinamica immagini 2024 (invariato) ---
+        const galleria2024 = $('#galleria-2024');
+        const basePath2024 = 'img roccageddon/Foto 2024/';
+        const numeroFoto2024 = 85;
+        const nomeBaseFoto2024 = 'Roccageddon_2024-';
+        const estensioneFoto2024 = '.jpg';
+        if (galleria2024.length) {
+            for (let i = 1; i <= numeroFoto2024; i++) {
+                const numeroFormattato2024 = i.toString().padStart(2, '0');
+                const nomeFile2024 = nomeBaseFoto2024 + numeroFormattato2024 + estensioneFoto2024;
+                const altText2024 = `Foto Roccageddon 2024 - ${numeroFormattato2024}`;
+                const imageHtml2024 = `<div><img src="${basePath2024}${nomeFile2024}" alt="${altText2024}" loading="lazy"></div>`;
+                galleria2024.append(imageHtml2024);
+            }
+            console.log(`Aggiunte ${numeroFoto2024} immagini alla galleria 2024.`);
+        } else {
+             console.warn("Contenitore galleria 2024 non trovato.");
+        }
+        // --- Fine generazione 2024 ---
+
+        // --- Inizializza Slick DOPO il caricamento completo della finestra ---
+        $(window).on('load', function() {
+            // Inizializza Slick su TUTTE le gallerie (anche se nascoste)
+            $('.galleria-foto').slick({
+                // *** OPZIONI SLICK MODIFICATE ***
+                dots: false,          // Rimuove i pallini sotto
+                infinite: true,
+                speed: 500,
+                slidesToShow: 4,      // Mostra 4 slide per default
+                slidesToScroll: 1,    // Scorre una slide alla volta
+                variableWidth: true,  // Permette larghezze diverse
+                adaptiveHeight: false,// False se slidesToShow > 1
+                lazyLoad: 'ondemand',
+                arrows: true,
+                // *** FINE OPZIONI SLICK MODIFICATE ***
+                responsive: [
+                    {
+                        breakpoint: 1024, // Sotto 1024px
+                        settings: {
+                            slidesToShow: 3, // Mostra 3 slide
+                            variableWidth: true,
+                        }
+                    },
+                    {
+                        breakpoint: 768, // Sotto 768px (tablet)
+                        settings: {
+                            slidesToShow: 2, // Mostra 2 slide
+                            variableWidth: true,
+                            centerMode: false
+                        }
+                    },
+                    {
+                        breakpoint: 480, // Sotto 480px (mobile)
+                        settings: {
+                            slidesToShow: 1, // Mostra 1 slide
+                            variableWidth: false,
+                            centerMode: false
+                        }
+                    }
+                ]
+            });
+            console.log('Slick inizializzato su tutte le gallerie (anche nascoste).');
+
+            // --- GESTIONE CLICK MODIFICATA (TOGGLE) ---
+            $('.mostra-galleria-btn').on('click', function() {
+                const $button = $(this); // Memorizza il bottone cliccato
+                const targetId = $button.data('target');
+                const $galleryToShow = $(targetId);
+                const year = targetId.includes('2025') ? '2025' : '2024'; // Estrai l'anno per il testo
+
+                if ($galleryToShow.length) {
+                    // Usa fadeToggle per mostrare/nascondere con effetto
+                    $galleryToShow.fadeToggle(400, function() {
+                        // Questa funzione viene eseguita DOPO l'animazione
+                        if ($galleryToShow.is(':visible')) {
+                            // Se la galleria è ora VISIBILE:
+                            $galleryToShow.slick('setPosition');
+                            $button.text(`Nascondi Foto ${year}`);
+                            console.log('Galleria ' + targetId + ' mostrata e setPosition chiamato.');
+                        } else {
+                            // Se la galleria è ora NASCOSTA:
+                            $button.text(`Mostra Foto ${year}`);
+                            console.log('Galleria ' + targetId + ' nascosta.');
+                        }
+                    });
+                } else {
+                    console.warn('Galleria non trovata per il target: ' + targetId);
+                }
+            });
+             // --- FINE GESTIONE CLICK MODIFICATA ---
+
+        }); // --- Fine $(window).on('load') ---
+
+    }); // --- Fine $(document).ready() ---
+</script>
+</body>
+</html>
