@@ -8,13 +8,13 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
-<!-- *** AGGIUNGI LA CLASSE 'gilda' AL BODY *** -->
+<!-- Classe 'gilda' aggiunta al body -->
 <body class="gilda">
     <nav class="navbar">
         <div class="navbar-logo">
-            <img src="img index/logo lbg.png" alt="Logo LBG">
+            <a href="index.html">
+            <img src="img index/logo lbg.png" alt="Logo LBG"></a>
         </div>
-        <!-- ... contenuto navbar ... -->
         <ul class="navbar-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="roccageddon.html">Roccageddon</a></li>
@@ -22,38 +22,47 @@
             <li><a href="news.html">News</a></li>
             <li><a href="chisiamo.html">Chi Siamo</a></li>
         </ul>
-        <!-- ... resto navbar ... -->
+        <!-- *** ELEMENTI AGGIUNTI PER IL MENU MOBILE *** -->
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="mobile-nav">
+            <a href="index.html">Home</a>
+            <a href="roccageddon.html">Roccageddon</a>
+            <a href="gilda.html" class="active">Gilda Latium Bloodbowl</a>
+            <a href="news.html">News</a>
+            <a href="chisiamo.html">Chi Siamo</a>
+        </div>
+        <!-- *** FINE ELEMENTI AGGIUNTI *** -->
     </nav>
 
     <header class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Gilda Latium Bloodbowl</h1>
-            <!-- *** MODIFICA IL SOTTOTITOLO *** -->
             <p class="hero-subtitle">La casa del Blood Bowl nella regione Lazio!</p>
         </div>
         <!-- Il logo di sfondo verrà aggiunto tramite CSS (::before) -->
     </header>
 
     <section class="section">
-        <!-- *** SOSTITUISCI IL VECCHIO DIV .gilda-logo CON QUESTO *** -->
         <div class="league-logos">
-            <img src="img gilda/lbg.png" alt="Logo Lega 1">
-            <img src="img gilda/bbroma.png" alt="Logo Lega 2">
-            <img src="img gilda/zhufbar.png" alt="Logo Lega 3">
-            <img src="img gilda/eretum.png" alt="Logo Lega 4">
-            <!-- <<< SOSTITUISCI I PERCORSI E ALT TEXT CON QUELLI REALI >>> -->
+            <!-- Aggiorna alt text per accessibilità -->
+            <img src="img gilda/lbg.png" alt="Logo LBG">
+            <img src="img gilda/bbroma.png" alt="Logo Blood Bowl Roma">
+            <img src="img gilda/zhufbar.png" alt="Logo Zhufbar Championship">
+            <img src="img gilda/eretum.png" alt="Logo Eretum Blood Bowl">
         </div>
-        <!-- *** FINE SOSTITUZIONE *** -->
 
         <div class="storia-gilda">
-            <!-- L'H2 "La Nostra Storia" sarà già centrato grazie al CSS aggiunto prima -->
             <h2>La Nostra Storia</h2>
             <p> Gilda Latium Blood Bowl è una federazione che ha come sede la regione Lazio. La GLBB nasce dalla volontà di quattro Leghe:
                 Blood Bowl Roma (Roma)
                 Eretum Blood Bowl (Monterotondo)
                 Lega BloodBowl GiocoMagazzino (Roccasecca)
                 Zhufbar Championship (Roma)
-                con lo scopo di far tornare fiorente il Blood Bowl nella nostra regione, soprattutto attirando giocatori nuovi. 
+                con lo scopo di far tornare fiorente il Blood Bowl nella nostra regione, soprattutto attirando giocatori nuovi.
                 Per suggellare questa amicizia ludica, la GLBB ha creato la Quadriga: una competizione "slam" composta da quattro tornei alla fine del quale verrà premiato come campione il vincitore assoluto. Sarete voi a vincere la Quadriga? Lo saprete solo giocando!
                 Le sorprese non finiscono qua, rimanete sintonizzati!</p>
         </div>
@@ -63,14 +72,13 @@
             <ul>
                 <li>[5/6 Aprile 2025] - [Tappa 1 quadriga] - [Roccageddon - Concluso!].</li>
                 <li>[22 Giugno 2025] - [Tappa 2 quadriga] - [Savage Cup V].</li>
-                <li>[30 NOvembre 2025] - [Tappa 3 quadriga] - [Ice Cup II].</li>
+                <li>[30 Novembre 2025] - [Tappa 3 quadriga] - [Ice Cup II].</li>
                 <li>[6/7 Dicembre 2025] - [Tappa 4 quadriga] - [Zhufbar Winter VI].</li>
             </ul>
         </div>
     </section>
 
     <footer class="contact-social" id="contact-social">
-        <!-- Contenuto footer rimane invariato -->
         <div class="contact-info">
             <h2>Contattaci</h2>
             <p>Hai domande o vuoi unirti alla LBG?</p>
@@ -78,9 +86,10 @@
         </div>
         <div class="social-links">
             <h3>Seguici sui Social</h3>
-            <a href="https://www.facebook.com/profile.php?id=61561901220806" target="_blank"><i class="fab fa-facebook-square"></i></a>
-            <a href="https://lbgi.blogspot.com" target="_blank"><i class="fas fa-blog"></i></a>
-            <a href="https://www.instagram.com/lega_bloodbowl_giocomagazzino/" target="_blank"><i class="fab fa-instagram-square"></i></a>
+            <!-- Aggiungi aria-label per accessibilità -->
+            <a href="https://www.facebook.com/profile.php?id=61561901220806" target="_blank" aria-label="Pagina Facebook LBG"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://lbgi.blogspot.com" target="_blank" aria-label="Blog LBG"><i class="fas fa-blog"></i></a>
+            <a href="https://www.instagram.com/lega_bloodbowl_giocomagazzino/" target="_blank" aria-label="Pagina Instagram LBG"><i class="fab fa-instagram-square"></i></a>
         </div>
     </footer>
 

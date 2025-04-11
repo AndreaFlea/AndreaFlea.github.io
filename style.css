@@ -241,9 +241,11 @@
 
    .mobile-nav a:hover,
    .mobile-nav a.active {
-       color: var(--colore-testo-mobile-nav-hover);
-       background-color: rgba(255, 193, 7, 0.1); /* Sfondo leggero primario */
-   }
+    background-color: transparent; /* Rimuove qualsiasi sfondo */
+    box-shadow: none;            /* Rimuove eventuali aloni/ombre */
+    color: var(--colore-primario); /* Imposta il colore del testo a giallo (usa la tua variabile) */
+    font-weight: bold;           /* Opzionale: Rende il testo un po' più evidente */
+  }
 
    /* Blocca scroll quando menu mobile è aperto */
    body.mobile-nav-open {
