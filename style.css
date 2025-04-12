@@ -14,7 +14,8 @@
        --colore-testo-chiaro: #fff;
        --colore-testo-scuro: #222;
        --colore-link-azzurro: #add8e6;
-
+       --colore-giallo-oro: #FFD700; /* Giallo oro specifico */
+   
        /* Sfondi */
        --colore-sfondo-gradiente-start: #00001a; /* Blu molto scuro */
        --colore-sfondo-gradiente-end: #1a1a3d; /* Blu scuro */
@@ -22,19 +23,20 @@
        --colore-sfondo-navbar: rgba(0, 0, 0, 0.9);
        --colore-sfondo-footer: rgba(0, 0, 0, 0.9);
        --colore-sfondo-mobile-nav: rgba(0, 0, 0, 0.95);
-       --colore-sfondo-overlay-scuro: rgba(0, 0, 0, 0.5); /* Overlay generico */
-       --colore-sfondo-overlay-medio: rgba(0, 0, 0, 0.7); /* Overlay più scuro */
-       --colore-sfondo-overlay-leggero: rgba(0, 0, 0, 0.2); /* Overlay leggero */
+       --colore-sfondo-overlay-scuro: rgba(0, 0, 0, 0.7); /* Overlay più scuro (70%) */
+       --colore-sfondo-overlay-medio: rgba(0, 0, 0, 0.5); /* Overlay medio (50%) */
+       --colore-sfondo-overlay-leggero: rgba(0, 0, 0, 0.3); /* Overlay leggero (30%) */
+       --colore-sfondo-overlay-molto-leggero: rgba(0, 0, 0, 0.1); /* Overlay molto leggero (10%) */
        --colore-sfondo-elemento-chiaro: rgba(255, 255, 255, 0.1); /* Sfondo chiaro traslucido */
-
+   
        /* Navbar */
        --colore-testo-navbar: var(--colore-testo-chiaro);
        --colore-testo-link-navbar: var(--colore-secondario);
        --colore-testo-link-navbar-hover: var(--colore-testo-scuro);
        --colore-sfondo-link-navbar-hover: var(--colore-primario);
-       --colore-testo-mobile-nav: var(--colore-testo-chiaro); /* Aggiunto per mobile */
-       --colore-testo-mobile-nav-hover: var(--colore-testo-scuro); /* Aggiunto per mobile */
-
+       --colore-testo-mobile-nav: var(--colore-testo-chiaro);
+       --colore-testo-mobile-nav-hover: var(--colore-primario); /* Giallo su hover mobile */
+   
        /* Hero */
        --colore-testo-hero: var(--colore-testo-chiaro);
        --colore-titolo-hero: var(--colore-primario);
@@ -43,24 +45,19 @@
        --colore-sfondo-bottone-hero: var(--colore-primario);
        --colore-bottone-hero-hover: var(--colore-testo-chiaro);
        --colore-sfondo-bottone-hero-hover: #e0a800; /* Variazione primario */
-
+   
        /* Sezioni Generiche */
        --colore-bordo-sezione: var(--colore-primario);
        --colore-titolo-sezione: var(--colore-primario);
        --colore-bordo-titolo-sezione: var(--colore-quaternario);
-
+   
        /* News */
        --colore-testo-news: var(--colore-secondario);
        --colore-link-news: var(--colore-primario);
        --colore-link-news-hover: #e0a800; /* Variazione primario */
        --colore-data-news: var(--colore-terziario);
        --colore-bordo-news: #666; /* Grigio medio-scuro */
-
-       /* Roccageddon (index) */
-       --colore-testo-roccageddon-index: var(--colore-secondario);
-       --colore-link-roccageddon-index: var(--colore-primario);
-       --colore-link-roccageddon-index-hover: #e0a800; /* Variazione primario */
-
+   
        /* Footer */
        --colore-testo-footer: #eee; /* Quasi bianco */
        --colore-titolo-footer: var(--colore-primario);
@@ -70,41 +67,49 @@
        --colore-titolo-social: var(--colore-secondario);
        --colore-icona-social: var(--colore-primario);
        --colore-icona-social-hover: #e0a800; /* Variazione primario */
-
-       /* Gilda */
-       --colore-titolo-annunci-gilda: var(--colore-primario);
-       --colore-bordo-annunci-gilda: var(--colore-quaternario);
-
-       /* Chi Siamo */
-       --colore-bordo-member-img: var(--colore-primario);
-       --colore-nome-member: var(--colore-primario);
-       --colore-ruolo-member: var(--colore-secondario);
+   
+       /* Ombre */
+       --ombra-testo-leggera: 1px 1px 2px rgba(0, 0, 0, 0.5);
+       --ombra-testo-media: 2px 2px 4px rgba(0, 0, 0, 0.7);
+       --ombra-box-leggera: 0 2px 5px rgba(0, 0, 0, 0.3);
+       --ombra-box-media: 0 4px 8px rgba(0, 0, 0, 0.4);
+       --ombra-box-forte: 0 6px 12px rgba(0, 0, 0, 0.5);
    }
-
+   
    /* ==========================================================================
       2. Stili di Base
       ========================================================================== */
-
-   body {
-       font-family: 'Roboto Condensed', sans-serif;
+   
+   *, *::before, *::after {
+       box-sizing: border-box;
        margin: 0;
        padding: 0;
+   }
+   
+   html {
+       scroll-behavior: smooth;
+   }
+   
+   body {
+       font-family: 'Roboto Condensed', sans-serif;
        background: linear-gradient(to bottom, var(--colore-sfondo-gradiente-start), var(--colore-sfondo-gradiente-end));
        color: var(--colore-secondario);
        line-height: 1.6;
        overflow-x: hidden; /* Previene scroll orizzontale */
    }
-
-   *, *:before, *:after {
-       box-sizing: border-box;
+   
+   /* Blocca scroll quando menu mobile è aperto */
+   body.mobile-nav-open {
+       overflow: hidden;
    }
-
+   
    img {
        max-width: 100%;
        height: auto;
        display: block; /* Rimuove spazio extra sotto le immagini */
+       vertical-align: middle; /* Allinea meglio se inline */
    }
-
+   
    a {
        color: var(--colore-link-azzurro); /* Link azzurro di default */
        text-decoration: none;
@@ -113,11 +118,15 @@
    a:hover {
        color: var(--colore-primario); /* Giallo su hover */
    }
-
+   
+   ul {
+       list-style: none; /* Rimuove pallini di default */
+   }
+   
    /* ==========================================================================
       3. Layout Principale (Navbar, Footer)
       ========================================================================== */
-
+   
    /* --- Navbar --- */
    .navbar {
        background-color: var(--colore-sfondo-navbar);
@@ -126,54 +135,45 @@
        display: flex;
        justify-content: center; /* Centra i link per default */
        align-items: center;
-       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+       box-shadow: var(--ombra-box-leggera);
        position: sticky; /* Rende la navbar fissa in alto */
        top: 0;
        z-index: 1000; /* Assicura che sia sopra altri elementi */
    }
-
+   
    .navbar-logo {
-       font-size: 2em;
-       font-weight: bold;
-       color: var(--colore-primario);
-       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
        position: absolute;
        left: 2em;
        top: 50%;
        transform: translateY(-50%);
    }
-
+   
    .navbar-logo img {
        height: 50px;
-       vertical-align: middle;
    }
-
+   
    .navbar-links {
-       list-style: none;
-       margin: 0;
-       padding: 0;
        display: flex;
    }
-
+   
    .navbar-links li {
        margin-left: 1.5em;
    }
-
+   
    .navbar-links a {
        color: var(--colore-testo-link-navbar);
-       text-decoration: none;
        padding: 0.7em 1.2em;
        border-radius: 5px;
        transition: background-color 0.3s ease, color 0.3s ease;
        display: block;
    }
-
+   
    .navbar-links a:hover,
    .navbar-links a.active {
        background-color: var(--colore-sfondo-link-navbar-hover);
        color: var(--colore-testo-link-navbar-hover);
    }
-
+   
    /* --- Menu Mobile --- */
    .menu-toggle {
        display: none; /* Nascosto per default */
@@ -186,9 +186,9 @@
        right: 2em;
        top: 50%;
        transform: translateY(-50%);
-       z-index: 11; /* Sopra il mobile nav */
+       z-index: 1011; /* Sopra il mobile nav */
    }
-
+   
    .menu-toggle .bar {
        width: 100%;
        height: 3px;
@@ -196,21 +196,15 @@
        transition: all 0.3s ease-in-out;
        border-radius: 1px;
    }
-
+   
    /* Animazione hamburger -> X */
-   .menu-toggle.active .bar:nth-child(1) {
-       transform: rotate(-45deg) translate(-5px, 6px);
-   }
-   .menu-toggle.active .bar:nth-child(2) {
-       opacity: 0;
-   }
-   .menu-toggle.active .bar:nth-child(3) {
-       transform: rotate(45deg) translate(-5px, -6px);
-   }
-
+   .menu-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+   .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+   .menu-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+   
    .mobile-nav {
        display: none; /* Nascosto per default */
-       flex-direction: column; /* Impostato qui, così .open solo mostra */
+       flex-direction: column;
        align-items: center;
        background-color: var(--colore-sfondo-mobile-nav);
        width: 100%;
@@ -219,39 +213,31 @@
        position: absolute;
        top: 100%; /* Sotto la navbar */
        left: 0;
-       z-index: 10; /* Sotto il toggle ma sopra il resto */
+       z-index: 1010; /* Sotto il toggle ma sopra il resto */
        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
    }
-
+   
    .mobile-nav.open {
        display: flex; /* Mostra il menu */
    }
-
+   
    .mobile-nav a {
        display: block;
        color: var(--colore-testo-mobile-nav);
        padding: 1em 0;
-       text-decoration: none;
-       transition: color 0.3s ease, background-color 0.3s ease;
+       transition: color 0.3s ease;
        font-size: 1.1em;
        width: 80%;
        margin: 0.5em 0;
        border-radius: 5px;
    }
-
+   
    .mobile-nav a:hover,
    .mobile-nav a.active {
-    background-color: transparent; /* Rimuove qualsiasi sfondo */
-    box-shadow: none;            /* Rimuove eventuali aloni/ombre */
-    color: var(--colore-primario); /* Imposta il colore del testo a giallo (usa la tua variabile) */
-    font-weight: bold;           /* Opzionale: Rende il testo un po' più evidente */
-  }
-
-   /* Blocca scroll quando menu mobile è aperto */
-   body.mobile-nav-open {
-       overflow: hidden;
+       color: var(--colore-testo-mobile-nav-hover); /* Giallo */
+       font-weight: bold;
    }
-
+   
    /* --- Footer --- */
    .contact-social {
        display: flex;
@@ -262,142 +248,141 @@
        color: var(--colore-testo-footer);
        border-radius: 10px;
        box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.4);
-       margin: 3em 0 0 0; /* Margine solo sopra */
+       margin-top: 3em;
    }
-
+   
    .contact-info {
        text-align: center;
        flex: 1;
        margin-right: 2em; /* Spazio tra le due colonne */
    }
-
+   
    .contact-info h2 {
        color: var(--colore-titolo-footer);
        margin-bottom: 1em;
-       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+       text-shadow: var(--ombra-testo-leggera);
        border-bottom: 3px solid var(--colore-bordo-titolo-footer);
        padding-bottom: 0.7em;
    }
-
+   
    .contact-info p {
        margin-bottom: 1.5em;
        font-size: 1.15em;
    }
-
+   
    .contact-info a {
        color: var(--colore-link-footer);
-       text-decoration: none;
        font-weight: bold;
-       transition: color 0.3s ease;
    }
-
+   
    .contact-info a:hover {
        color: var(--colore-link-footer-hover);
        text-decoration: underline;
    }
-
+   
    .social-links {
        text-align: center;
        flex: 1;
    }
-
+   
    .social-links h3 {
        color: var(--colore-titolo-social);
        margin-bottom: 1em;
    }
-
+   
    .social-links a {
        color: var(--colore-icona-social);
-       text-decoration: none;
        margin: 0 1em;
        font-size: 2.5em;
        transition: color 0.3s ease, transform 0.2s ease-in-out;
        display: inline-block; /* Per applicare transform */
    }
-
+   
    .social-links a:hover {
        color: var(--colore-icona-social-hover);
        transform: scale(1.1);
    }
-
+   
    /* ==========================================================================
-      4. Componenti Comuni (Hero, Section, Bottoni, etc.)
+      4. Componenti Comuni (Hero, Section, Bottoni, Sfondi)
       ========================================================================== */
-
+   
+   /* --- Stile Base per Sfondi con Pseudo-Elemento --- */
+   .has-background-image::before {
+       content: '';
+       position: absolute;
+       top: 0; left: 0; width: 100%; height: 100%;
+       background-size: cover;
+       background-position: center;
+       background-repeat: no-repeat;
+       z-index: -1; /* Dietro il contenuto */
+       opacity: 0.1; /* Opacità di default molto leggera */
+       border-radius: inherit; /* Eredita bordi arrotondati se presenti */
+   }
+   /* Contenuto sopra lo sfondo */
+   .has-background-image > * {
+       position: relative;
+       z-index: 1;
+   }
+   
    /* --- Hero Section Base --- */
    .hero {
        color: var(--colore-testo-hero);
        padding: 8em 2em;
        text-align: center;
        margin-bottom: 3em;
-       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+       box-shadow: var(--ombra-box-media);
        border-radius: 8px;
-       position: relative; /* Necessario per ::before e .hero-content */
+       position: relative; /* Contesto per ::before e .hero-content */
        overflow: hidden;
        background-color: var(--colore-sfondo-overlay-medio); /* Overlay scuro di base */
+       z-index: 1; /* Contesto stacking */
    }
-
-   /* Pseudo-elemento per immagine di sfondo (vuoto per default) */
-   .hero::before {
-       content: '';
-       position: absolute;
-       top: 0;
-       left: 0;
-       width: 100%;
-       height: 100%;
-       background-size: cover;
-       background-position: center;
-       background-repeat: no-repeat;
-       z-index: 0; /* Dietro l'overlay e il contenuto */
-       opacity: 0.5; /* Opacità base per le immagini di sfondo */
-       transition: opacity 0.5s ease; /* Transizione opacità */
-   }
-
+   
    /* Contenuto Hero */
    .hero-content {
-       position: relative; /* Sopra ::before e l'overlay */
-       z-index: 1;
+       position: relative; /* Sopra l'overlay/sfondo */
+       z-index: 2;
        animation: fadeInUp 1s ease-out 0.5s both;
    }
-
+   
    @keyframes fadeInUp {
        from { opacity: 0; transform: translateY(20px); }
        to { opacity: 1; transform: translateY(0); }
    }
-
+   
    .hero-title {
        font-size: 3.5em;
        margin-bottom: 0.6em;
        color: var(--colore-titolo-hero);
-       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+       text-shadow: var(--ombra-testo-media);
    }
-
+   
    .hero-subtitle {
        font-size: 1.6em;
        margin-bottom: 1.8em;
        font-style: italic;
        color: var(--colore-sottotitolo-hero);
    }
-
+   
    .hero-button {
        display: inline-block;
        padding: 1.2em 2.5em;
        background-color: var(--colore-sfondo-bottone-hero);
        color: var(--colore-bottone-hero);
-       text-decoration: none;
        border-radius: 8px;
        font-weight: bold;
        font-size: 1.1em;
        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out;
-       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+       box-shadow: var(--ombra-box-leggera);
    }
-
+   
    .hero-button:hover {
        background-color: var(--colore-sfondo-bottone-hero-hover);
        color: var(--colore-bottone-hero-hover);
        transform: scale(1.05);
    }
-
+   
    /* --- Sezione Generica --- */
    .section {
        padding: 3em 2em;
@@ -405,160 +390,162 @@
        background-color: var(--colore-sfondo-sezione);
        border-left: 8px solid var(--colore-bordo-sezione);
        border-radius: 10px;
-       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+       box-shadow: var(--ombra-box-media);
        animation: slideInLeft 0.8s ease-out both;
+       position: relative; /* Per eventuali sfondi ::before */
+       z-index: 1; /* Contesto stacking */
    }
-
+   
    @keyframes slideInLeft {
        from { opacity: 0; transform: translateX(-50px); }
        to { opacity: 1; transform: translateX(0); }
    }
-
+   
    .section-title {
        font-size: 2.5em;
        color: var(--colore-titolo-sezione);
        margin-bottom: 1.5em;
-       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+       text-shadow: var(--ombra-testo-leggera);
        border-bottom: 3px solid var(--colore-bordo-titolo-sezione);
        padding-bottom: 0.7em;
        text-align: center;
    }
-
+   
    /* ==========================================================================
       5. Stili Specifici per Pagina
       ========================================================================== */
-
+   
    /* --- Home (index.html) --- */
-   /* Aggiungi <body class="index"> in index.html */
-
-   body.index .hero::before {
-       background-image: url('img index/Lbg unita.jpg');
-       opacity: 0.2; /* Opacità specifica per index */
-   }
-   /* Rimuove l'overlay scuro di base per la index */
+   /* Aggiungere <body class="index"> in index.html */
+   
    body.index .hero {
-       background-color: transparent;
+       background-color: transparent; /* Rimuove overlay base */
+       position: relative; /* Necessario per ::before */
+       z-index: 1;
    }
-
-   /* Sfondo per la sezione News nella Home */
-   body.index .section ul#index-news-list {
-       padding: 2em;
-       border-radius: 10px;
-       position: relative;
-       overflow: hidden;
-       z-index: 1; /* Contesto di stacking per ::before */
-       margin-top: 0;
-       background-color: transparent; /* Rimuove sfondo sezione generica */
-       border-left: none; /* Rimuove bordo sezione generica */
-       animation: none; /* Rimuove animazione sezione generica */
-       box-shadow: none; /* Rimuove ombra sezione generica */
-   }
-
-   body.index .section ul#index-news-list::before {
+   body.index .hero::before { /* Sfondo specifico */
        content: '';
-       position: absolute;
-       top: 0; left: 0; width: 100%; height: 100%;
+       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+       background-image: url('img index/Lbg unita.jpg');
+       background-size: cover; background-position: center; background-repeat: no-repeat;
+       opacity: 0.2;
+       z-index: -1; /* Dietro il contenuto */
+   }
+   
+   /* Sezione News nella Home */
+   body.index .index-news-section { /* Selettore per la section */
+       background-color: transparent;
+       border-left: none;
+       animation: none;
+       box-shadow: none;
+       padding: 1.5em; /* Padding ridotto */
+       margin-bottom: 2em;
+       position: relative; /* Per ::before */
+       z-index: 1;
+       border-radius: 10px;
+       overflow: hidden;
+   }
+   body.index .index-news-section::before { /* Sfondo specifico */
+       content: '';
+       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
        background-image: url('img index/sfondo news.webp');
        background-size: cover; background-position: center; background-repeat: no-repeat;
        opacity: 0.2;
        z-index: -1; /* Dietro il contenuto della lista */
-       border-radius: 10px;
+       border-radius: inherit;
    }
-
+   body.index .index-news-section .section-title {
+       margin-bottom: 1em; /* Meno spazio sotto il titolo */
+   }
+   body.index .index-news-section ul#index-news-list {
+       margin-top: 0;
+   }
    /* Elementi lista news sopra lo sfondo */
-   body.index .section ul#index-news-list li {
-       position: relative; /* Per z-index */
+   body.index .index-news-section ul#index-news-list li {
+       position: relative;
        z-index: 2;
+       border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Bordo leggero */
+       padding-bottom: 1.5em;
+       margin-bottom: 1.5em;
    }
-
+   body.index .index-news-section ul#index-news-list li:last-child {
+       border-bottom: none;
+       margin-bottom: 0;
+   }
+   
    /* Sezione Roccageddon nella Home */
-   .roccageddon-info { /* Questo è già specifico, non serve body.index */
+   .roccageddon-info {
        text-align: center;
        padding: 3em 2em;
        border-radius: 10px;
        margin-top: 2em;
        position: relative;
        overflow: hidden;
-       z-index: 1; /* Contesto di stacking */
-       background-color: transparent; /* Rimuove sfondo sezione generica se applicato */
+       z-index: 1; /* Contesto stacking */
+       background-color: transparent;
        border-left: none;
        animation: none;
        box-shadow: none;
    }
-
-   .roccageddon-info::before {
+   .roccageddon-info::before { /* Sfondo specifico */
        content: '';
-       position: absolute;
-       top: 0; left: 0; width: 100%; height: 100%;
+       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
        background-image: url('img index/sfondo roccageddon.jpg');
        background-size: cover; background-position: center; background-repeat: no-repeat;
        opacity: 0.2;
        z-index: -1; /* Dietro il contenuto */
    }
-
+   .roccageddon-info > * { /* Contenuto sopra lo sfondo */
+       position: relative;
+       z-index: 2;
+   }
    .roccageddon-info img { /* Logo pulsante */
        max-width: 15%;
-       height: auto;
-       margin: 0 auto 1em auto; /* Centra e aggiunge spazio sotto */
-       display: block;
+       margin: 0 auto 1em auto;
        animation: pulse 2s infinite alternate;
-       position: relative; /* Per z-index */
-       z-index: 2; /* Sopra ::before */
    }
-
    @keyframes pulse {
        from { transform: scale(1); }
        to { transform: scale(1.03); }
    }
-
-   .roccageddon-info p,
-   .roccageddon-info a {
-       position: relative; /* Per z-index */
-       z-index: 2; /* Sopra ::before */
-   }
-
    .roccageddon-info p {
        margin-bottom: 1.2em;
        font-size: 1.15em;
-       color: var(--colore-testo-roccageddon-index);
+       color: var(--colore-secondario);
    }
-
    .roccageddon-info a {
-       color: var(--colore-link-roccageddon-index);
-       text-decoration: none;
+       color: var(--colore-primario);
        font-weight: bold;
        transition: color 0.3s ease, transform 0.2s ease-in-out;
-       display: inline-block; /* Per transform */
+       display: inline-block;
    }
-
    .roccageddon-info a:hover {
-       color: var(--colore-link-roccageddon-index-hover);
+       color: #e0a800;
        text-decoration: underline;
        transform: scale(1.02);
    }
-
+   
    /* --- Pagina Gilda (gilda.html) --- */
-   /* Aggiungi <body class="gilda"> in gilda.html */
-
-   body.gilda .hero::before {
-       /* Usa l'immagine del logo gilda come sfondo */
-       background-image: url('img gilda/gilda.png');
-       background-size: contain; /* Adatta il logo senza tagliarlo */
-       opacity: 0.5; /* Opacità specifica */
-       /* Rimuove l'overlay scuro di base */
-       background-color: transparent;
-       /* Ridimensiona e centra l'area dell'immagine */
-       width: 80%;
-       height: 80%;
-       top: 50%;
-       left: 50%;
-       transform: translate(-50%, -50%);
-   }
+   /* Aggiungere <body class="gilda"> in gilda.html */
+   
    body.gilda .hero {
        background-color: transparent; /* Rimuove overlay base */
+       position: relative;
+       z-index: 1;
    }
-
-
+   body.gilda .hero::before { /* Sfondo specifico */
+       content: '';
+       position: absolute; top: 50%; left: 50%;
+       width: 80%; height: 80%;
+       transform: translate(-50%, -50%);
+       background-image: url('img gilda/gilda.png');
+       background-size: contain;
+       background-position: center;
+       background-repeat: no-repeat;
+       opacity: 0.5;
+       z-index: -1;
+   }
+   
    .league-logos {
        display: flex;
        justify-content: space-around;
@@ -568,14 +555,12 @@
        margin-bottom: 2em;
        padding: 1em 0;
    }
-
    .league-logos img {
        max-width: 200px;
        max-height: 200px;
-       height: auto;
        object-fit: contain;
    }
-
+   
    .storia-gilda,
    .annunci-gilda {
        padding: 2em;
@@ -587,7 +572,6 @@
        border-left: none;
        animation: none;
    }
-
    .storia-gilda h2 { /* Usa stile titolo sezione */
        color: var(--colore-titolo-sezione);
        margin-bottom: 1em;
@@ -596,11 +580,10 @@
        font-size: 2em;
        text-align: center;
    }
-
    .annunci-gilda h3 {
-       color: var(--colore-titolo-annunci-gilda);
+       color: var(--colore-primario);
        margin-bottom: 1em;
-       border-bottom: 2px solid var(--colore-bordo-annunci-gilda);
+       border-bottom: 2px solid var(--colore-quaternario);
        padding-bottom: 0.5em;
    }
    .annunci-gilda ul {
@@ -611,208 +594,287 @@
    .annunci-gilda li {
        margin-bottom: 0.8em;
    }
-
+   
    /* --- Pagina Chi Siamo (chisiamo.html) --- */
-   /* Aggiungi <body class="chisiamo"> in chisiamo.html */
-
+   /* Aggiungere <body class="chisiamo-page"> in chisiamo.html */
+   
+   .chisiamo-page .hero {
+       background-color: transparent; /* Rimuove overlay base */
+       position: relative;
+       z-index: 1;
+   }
+   .chisiamo-page .hero::before { /* Sfondo specifico */
+       content: "";
+       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+       background-image: url('img chisiamo/tutti.jpg');
+       background-size: cover; background-position: center; background-repeat: no-repeat;
+       opacity: 0.3;
+       z-index: -1;
+   }
+   .chisiamo-page .hero .hero-content {
+       position: relative;
+       z-index: 2;
+       text-shadow: var(--ombra-testo-leggera); /* Migliora leggibilità */
+   }
+   
    .member-grid {
        display: grid;
        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
        gap: 2em;
        margin-top: 2em;
    }
-
+   .retired-title { /* Sottotitolo membri ritirati */
+       text-align: center;
+       margin-top: 3em;
+       margin-bottom: 1.5em;
+       font-size: 1.8em;
+       color: var(--colore-terziario);
+   }
+   
    .member-card {
        background-color: var(--colore-sfondo-elemento-chiaro);
        border-radius: 10px;
        padding: 2em;
        text-align: center;
-       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+       box-shadow: var(--ombra-box-leggera);
        transition: transform 0.3s ease, box-shadow 0.3s ease;
+       display: flex; /* Per allineare contenuto verticalmente */
+       flex-direction: column;
    }
-
    .member-card:hover {
        transform: translateY(-5px);
-       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+       box-shadow: var(--ombra-box-media);
    }
-
    .member-card img {
        width: 150px;
        height: 150px;
        border-radius: 50%;
        object-fit: cover;
-       margin-bottom: 1em;
-       border: 3px solid var(--colore-bordo-member-img);
-       display: block;
-       margin-left: auto;
-       margin-right: auto;
+       margin: 0 auto 1em auto;
+       border: 3px solid var(--colore-primario);
    }
-
    .member-card h3 {
-       color: var(--colore-nome-member);
+       color: var(--colore-primario);
        margin-bottom: 0.5em;
        font-size: 1.5em;
    }
-
-   .member-card p {
-       color: var(--colore-ruolo-member);
+   .member-card p { /* Descrizione e ruolo */
+       color: var(--colore-secondario);
        font-size: 1.1em;
-       margin-bottom: 0.5em;
+       margin-bottom: 1em; /* Spazio prima delle squadre */
+       flex-grow: 1; /* Fa espandere la descrizione */
    }
-
+   .member-card .legendary-teams {
+       margin-top: auto; /* Spinge la sezione squadre in basso */
+   }
+   .member-card .legendary-teams h4 {
+       color: var(--colore-giallo-oro);
+       text-shadow: var(--ombra-testo-leggera);
+       margin-bottom: 0.5em;
+       font-size: 1.1em;
+   }
+   .member-card .legendary-teams ul {
+       padding-left: 0;
+       text-align: center;
+   }
+   .member-card .legendary-teams ul li {
+       margin-bottom: 5px;
+   }
+   .member-card .legendary-teams ul a {
+       color: var(--colore-link-azzurro);
+   }
+   .member-card .legendary-teams ul a:hover {
+       color: var(--colore-primario);
+       text-decoration: underline;
+   }
+   
    /* --- Pagina News (news.html) --- */
-   /* Aggiungi <body class="news"> in news.html */
-
-   /* Stili per la lista news con thumbnail (usati anche in index.html) */
+   /* Aggiungere <body class="news"> in news.html */
+   
+   body.news .hero {
+       position: relative;
+       z-index: 1;
+       background-color: transparent; /* Rimuove overlay base */
+   }
+   body.news .hero::before { /* Sfondo specifico */
+       content: "";
+       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+       background-image: url('img news/logo lbg con campo 2.png');
+       background-size: cover;
+       background-position: center 70%; /* Posizionamento specifico */
+       background-repeat: no-repeat;
+       opacity: 0.4; /* Opacità immagine (più visibile) */
+       z-index: -1;
+   }
+   /* Overlay separato per controllo fine */
+   body.news .hero::after {
+       content: "";
+       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+       background-color: var(--colore-sfondo-overlay-medio); /* Overlay 50% */
+       z-index: 0; /* Tra sfondo e contenuto */
+   }
+   body.news .hero .hero-content {
+       position: relative;
+       z-index: 1; /* Sopra overlay e sfondo */
+   }
+   
+   /* Sfondo per la sezione lista news */
+   body.news .news-list-section {
+       background-color: transparent;
+       border-left: none;
+       animation: none;
+       box-shadow: none;
+       padding: 1.5em;
+       margin-bottom: 2em;
+       position: relative;
+       z-index: 1;
+       border-radius: 10px;
+       overflow: hidden;
+   }
+   body.news .news-list-section::before { /* Sfondo specifico */
+       content: "";
+       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+       background-image: url('img news/sfondo news.webp');
+       background-size: cover; background-position: center; background-repeat: no-repeat;
+       opacity: 0.1; /* Molto leggero */
+       z-index: -1;
+       border-radius: inherit;
+   }
+   body.news .news-list-section .news-list {
+       margin-top: 0;
+       position: relative;
+       z-index: 2; /* Sopra lo sfondo della sezione */
+   }
+   
+   /* Stili Comuni Lista News (usati in news.html e index.html) */
    .news-list {
-       list-style: none;
-       padding: 0;
        margin-top: 2em;
    }
-
    /* Elemento lista con thumbnail */
-   body.news .news-list li,
-   body.index .news-list li.has-thumbnail {
+   .news-list li.has-thumbnail {
        display: flex;
        align-items: flex-start;
        margin-bottom: 2em;
        padding-bottom: 1.5em;
        border-bottom: 1px solid var(--colore-bordo-news);
    }
-
-   body.news .news-list li:last-child,
-   body.index .news-list li.has-thumbnail:last-child {
+   .news-list li.has-thumbnail:last-child {
        border-bottom: none;
        margin-bottom: 0;
    }
-
-   /* Rimuovi bordo se c'è sfondo nella index */
-   body.index ul#index-news-list li.has-thumbnail {
-       border-bottom: none;
-       margin-bottom: 1.5em;
-   }
-   body.index ul#index-news-list li.has-thumbnail:last-child {
-        margin-bottom: 0;
-   }
-
    /* Thumbnail */
    .news-thumbnail {
        max-width: 100px;
        width: 100%;
-       height: auto;
        object-fit: contain;
        margin-right: 1.5em;
        flex-shrink: 0;
        border-radius: 5px;
-       box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-       display: block;
+       box-shadow: var(--ombra-box-leggera);
    }
-
    /* Contenuto testo */
    .news-content {
        flex-grow: 1;
    }
-
    .news-content h3 {
        margin-top: 0;
        margin-bottom: 0.3em;
        font-size: 1.4em;
    }
-
    .news-content h3 a {
-       text-decoration: none;
        color: var(--colore-link-news);
-       transition: color 0.3s ease;
    }
-
    .news-content h3 a:hover {
        color: var(--colore-link-news-hover);
        text-decoration: underline;
    }
-
    .news-content small { /* Data */
        display: block;
        color: var(--colore-data-news);
        margin-bottom: 0.8em;
        font-size: 0.9em;
    }
-
    .news-content p { /* Sommario */
        margin-top: 0;
        line-height: 1.6;
        color: var(--colore-testo-news);
    }
-
    .news-content p a { /* Link "Leggi tutto" */
        color: var(--colore-link-news);
-       text-decoration: none;
        font-weight: bold;
-       transition: color 0.3s ease;
    }
    .news-content p a:hover {
-        color: var(--colore-link-news-hover);
-        text-decoration: underline;
+       color: var(--colore-link-news-hover);
+       text-decoration: underline;
    }
-
+   
    /* Stili specifici per la lista news in index.html (senza thumbnail affiancato) */
    body.index .news-list li:not(.has-thumbnail) {
        margin-bottom: 1.5em;
        padding-bottom: 1.5em;
-       border-bottom: 1px solid var(--colore-bordo-news);
+       /* Bordo gestito da .index-news-section li */
    }
-
    body.index .news-list li:not(.has-thumbnail):last-child {
        border-bottom: none;
    }
-
    body.index .news-list li:not(.has-thumbnail) h3 {
-       color: var(--colore-testo-news); /* Diverso da .news-content h3 */
+       color: var(--colore-testo-news);
        margin-bottom: 0.5em;
-       font-size: 1.4em; /* Coerente con .news-content h3 */
+       font-size: 1.4em;
    }
-
-   body.index .news-list li:not(.has-thumbnail) h3 a { /* Stile link titolo */
+   body.index .news-list li:not(.has-thumbnail) h3 a {
        color: var(--colore-link-news);
-       text-decoration: none;
        font-weight: bold;
-       transition: color 0.3s ease;
    }
-
    body.index .news-list li:not(.has-thumbnail) h3 a:hover {
        color: var(--colore-link-news-hover);
        text-decoration: underline;
    }
-
-   body.index .news-list li:not(.has-thumbnail) small { /* Data */
+   body.index .news-list li:not(.has-thumbnail) small {
        display: block;
        color: var(--colore-data-news);
        margin-bottom: 0.5em;
    }
-
-   body.index .news-list li:not(.has-thumbnail) p { /* Sommario */
-        margin-top: 0.5em;
-        color: var(--colore-testo-news);
+   body.index .news-list li:not(.has-thumbnail) p {
+       margin-top: 0.5em;
+       color: var(--colore-testo-news);
    }
-
-
+   
    /* --- Pagina Roccageddon (roccageddon.html) --- */
-   /* Aggiungi <body class="roccageddon-page"> in roccageddon.html */
-
-   /* Stile per l'header specifico di Roccageddon */
-   .roccageddon-page .hero { /* Selettore più specifico */
-       background-color: var(--colore-sfondo-overlay-scuro); /* Overlay */
+   /* Aggiungere <body class="roccageddon-page"> in roccageddon.html */
+   
+   body.roccageddon-page .hero {
+       background-color: transparent; /* Rimuove overlay base */
+       position: relative;
+       z-index: 1;
    }
-   .roccageddon-page .hero::before {
-       background-image: url('img roccageddon/roccageddon.png'); /* Immagine di sfondo */
-       background-size: contain; /* Mostra tutto il logo */
-       opacity: 0.3; /* Opacità immagine (effetto overlay combinato) - Aumentata leggermente */
+   body.roccageddon-page .hero::before { /* Sfondo specifico */
+       content: "";
+       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+       background-image: url('img roccageddon/roccageddon.png');
+       background-size: contain;
+       background-position: center;
+       background-repeat: no-repeat;
+       opacity: 0.4; /* Leggermente più visibile */
+       z-index: -1;
    }
-
-   /* Centra tutto il testo nel main SOLO per la pagina Roccageddon */
+   /* Overlay separato */
+   body.roccageddon-page .hero::after {
+       content: "";
+       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+       background-color: var(--colore-sfondo-overlay-scuro); /* Overlay 70% */
+       z-index: 0;
+   }
+   body.roccageddon-page .hero .hero-content {
+       position: relative;
+       z-index: 1;
+   }
+   
+   /* Centra tutto il testo nel main */
    body.roccageddon-page main {
        text-align: center;
    }
-
+   
    /* Sezione introduttiva Roccageddon */
    body.roccageddon-page .sezione-intro {
        padding: 2em;
@@ -820,25 +882,19 @@
        border-radius: 8px;
        margin-bottom: 2em;
        line-height: 1.7;
-       /* Rimuove stile sezione generica */
        border-left: none;
        animation: none;
-       color: var(--colore-secondario); /* Assicura testo leggibile */
+       color: var(--colore-secondario);
    }
-
    body.roccageddon-page .sezione-intro h2 {
        color: var(--colore-primario);
        margin-bottom: 1em;
        border-bottom: 2px solid var(--colore-quaternario);
        padding-bottom: 0.5em;
        font-size: 2em;
-       /* text-align: center; -- Ereditato da main */
    }
-
-   /* Sezioni Edizione Roccageddon (base senza sfondo immagine) */
-   /* Rimosso stile .edizione-roccageddon generico, usiamo gli ID */
-
-   /* Stili specifici per le sezioni con sfondo immagine */
+   
+   /* Sezioni Edizione Roccageddon con sfondo */
    #roccageddon-2024,
    #roccageddon-2025 {
        position: relative;
@@ -847,128 +903,107 @@
        background-repeat: no-repeat;
        padding: 2em 1em;
        color: var(--colore-testo-chiaro); /* Testo bianco per contrasto */
-       z-index: 0; /* Contesto stacking per ::before */
+       z-index: 1; /* Contesto stacking */
        border-radius: 8px;
        margin-bottom: 2em;
-       /* Rimuove stile sezione generica */
        border-left: none;
        animation: none;
-       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Ripristina ombra */
+       box-shadow: var(--ombra-box-media);
+       overflow: hidden; /* Per contenere ::before */
    }
-
    /* Overlay per sezioni con sfondo */
    #roccageddon-2024::before,
    #roccageddon-2025::before {
        content: "";
-       position: absolute;
-       top: 0; left: 0; right: 0; bottom: 0;
-       background-color: var(--colore-sfondo-overlay-medio); /* Overlay scuro 70% */
+       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+       background-color: var(--colore-sfondo-overlay-scuro); /* Overlay scuro 70% */
        z-index: -1; /* Dietro il contenuto */
-       border-radius: inherit; /* Eredita bordi arrotondati */
+       border-radius: inherit;
    }
-
    /* Immagini di sfondo specifiche */
-   #roccageddon-2024 {
-       background-image: url('img roccageddon/Rocca24sfondo.jpg');
+   #roccageddon-2024 { background-image: url('img roccageddon/Rocca24sfondo.jpg'); }
+   #roccageddon-2025 { background-image: url('img roccageddon/Rocca25sfondo.jpg'); }
+   
+   /* Contenuto sopra lo sfondo */
+   #roccageddon-2024 > *,
+   #roccageddon-2025 > * {
+       position: relative;
+       z-index: 2;
    }
-   #roccageddon-2025 {
-       background-image: url('img roccageddon/Rocca25sfondo.jpg');
-   }
-
+   
    /* Stili testo per sezioni con sfondo */
    #roccageddon-2024 h2, #roccageddon-2025 h2,
    #roccageddon-2024 h3, #roccageddon-2025 h3,
    #roccageddon-2024 h4, #roccageddon-2025 h4,
    #roccageddon-2024 p,  #roccageddon-2025 p,
-   #roccageddon-2024 ul li, #roccageddon-2025 ul li,
-   #roccageddon-2024 ul li strong, #roccageddon-2025 ul li strong {
+   #roccageddon-2024 ul li, #roccageddon-2025 ul li {
        color: inherit; /* Eredita il bianco dalla sezione */
-       text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Ombra per leggibilità */
+       text-shadow: var(--ombra-testo-leggera); /* Ombra per leggibilità */
    }
-
    #roccageddon-2024 h2, #roccageddon-2025 h2 {
        font-size: 2em;
        margin-bottom: 1em;
        border-bottom: 2px solid rgba(255,255,255,0.5); /* Bordo bianco traslucido */
        padding-bottom: 0.5em;
    }
-
    #roccageddon-2024 h3, #roccageddon-2025 h3 {
        font-size: 1.5em;
-       margin-top: 2em; /* Spazio sopra H3 */
-       margin-bottom: 0.8em;
+       margin-top: 2em; margin-bottom: 0.8em;
    }
    #roccageddon-2024 h4, #roccageddon-2025 h4 {
        font-size: 1.3em;
-       margin-top: 2em; /* Spazio sopra H4 */
-       margin-bottom: 0.8em;
+       margin-top: 2em; margin-bottom: 0.8em;
    }
-
    #roccageddon-2024 a, #roccageddon-2025 a {
-       color: var(--colore-link-azzurro); /* Link azzurro chiaro */
+       color: var(--colore-link-azzurro);
        text-decoration: underline;
    }
-
    #roccageddon-2024 a:hover, #roccageddon-2025 a:hover {
-       color: var(--colore-testo-chiaro); /* Bianco su hover */
+       color: var(--colore-testo-chiaro);
    }
-
-   /* Immagine classifica (centrata da 'main') */
+   /* Immagine classifica */
    .classifica-immagine {
        display: block;
-       margin-left: auto;
-       margin-right: auto;
-       max-width: 80%; /* Leggermente più piccola del contenitore */
-       height: auto;
+       margin: 0 auto 1em auto; /* Centrata da main, aggiunge spazio sotto */
+       max-width: 80%;
        border-radius: 8px;
-       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-       margin-bottom: 1em;
+       box-shadow: var(--ombra-box-leggera);
    }
-
    /* Elenco premi Roccageddon */
    #roccageddon-2024 ul,
    #roccageddon-2025 ul {
-       list-style-type: none;
        padding-left: 0;
-       margin-top: 1em;
-       margin-bottom: 1em;
-       display: inline-block; /* Per centrare il blocco lista */
-       text-align: left; /* Allinea il testo a sinistra dentro la lista */
+       margin: 1em auto; /* Centra il blocco */
+       display: inline-block; /* Per centrare */
+       text-align: left; /* Allinea testo a sinistra */
    }
-
    #roccageddon-2024 ul li,
    #roccageddon-2025 ul li {
        margin-bottom: 0.5em;
    }
-
-   /* Stile per etichetta premio */
    #roccageddon-2024 ul li strong,
    #roccageddon-2025 ul li strong {
-     font-weight: bold;
-     margin-right: 0.5em; /* Spazio dopo i due punti */
-     /* color: inherit; -- Già definito sopra */
+       font-weight: bold;
+       margin-right: 0.5em;
    }
-
-
+   
    /* Galleria Foto (Slick Carousel) */
    .galleria-foto {
        display: none; /* Nascondi di default */
-       margin: 1em auto; /* Centra il carosello */
-       max-width: 90%; /* Limita larghezza massima */
-       min-height: 250px; /* Altezza minima per evitare collasso */
-       background-color: var(--colore-sfondo-elemento-chiaro); /* Sfondo leggero */
-       padding: 15px; /* Spazio interno */
+       margin: 1em auto;
+       max-width: 90%;
+       min-height: 250px;
+       background-color: var(--colore-sfondo-elemento-chiaro);
+       padding: 15px;
        border-radius: 8px;
-       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+       box-shadow: var(--ombra-box-leggera);
    }
-
-   /* Bottone "Mostra Galleria" */
    .mostra-galleria-btn {
-       display: inline-block; /* Permette centratura con text-align: center del parent */
-       margin: 1.5em auto; /* Centra e aggiunge spazio */
+       display: inline-block;
+       margin: 1.5em auto;
        padding: 0.8em 1.5em;
-       background-color: var(--colore-primario); /* Usa colore primario */
-       color: var(--colore-testo-scuro); /* Testo scuro per contrasto */
+       background-color: var(--colore-primario);
+       color: var(--colore-testo-scuro);
        border: none;
        border-radius: 5px;
        cursor: pointer;
@@ -977,390 +1012,406 @@
        transition: background-color 0.3s ease, transform 0.2s ease;
        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
    }
-
    .mostra-galleria-btn:hover {
-       background-color: #e0a800; /* Variazione del primario */
+       background-color: #e0a800;
        transform: scale(1.03);
    }
-
-   .galleria-foto .slick-slide { /* Aggiunge spazio tra le slide */
-       padding: 0 10px;
-   }
-
+   .galleria-foto .slick-slide { padding: 0 10px; }
    .galleria-foto img {
-       display: block; /* Rimuove spazio sotto img */
-       width: 100%; /* Fa sì che l'immagine riempia la slide */
-       height: auto;
-       max-height: 400px; /* Altezza massima immagine */
-       object-fit: contain; /* Mostra tutta l'immagine, adatta altezza */
+       width: 100%;
+       max-height: 400px;
+       object-fit: contain;
        border-radius: 8px;
-       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-       margin: 0 auto; /* Centra img se slide è più larga */
+       box-shadow: var(--ombra-box-leggera);
+       margin: 0 auto;
    }
-
    /* Slick Carousel Arrows */
-   .slick-prev,
-   .slick-next {
+   .slick-prev, .slick-next {
        font-size: 0; line-height: 0;
        position: absolute; top: 50%;
-       display: block;
        width: 30px; height: 30px;
-       padding: 0;
-       transform: translateY(-50%);
-       cursor: pointer;
-       color: transparent; border: none; outline: none;
+       padding: 0; transform: translateY(-50%);
+       cursor: pointer; color: transparent; border: none; outline: none;
        background: rgba(0, 0, 0, 0.5);
-       border-radius: 50%;
-       z-index: 10; /* Sopra le immagini */
+       border-radius: 50%; z-index: 10;
    }
-   .slick-prev:hover,
-   .slick-next:hover {
-       background: rgba(0, 0, 0, 0.8);
+   .slick-prev:hover, .slick-next:hover { background: rgba(0, 0, 0, 0.8); }
+   .slick-prev:before, .slick-next:before {
+       font-family: "Font Awesome 6 Free"; font-weight: 900;
+       font-size: 16px; line-height: 1; opacity: .9; color: white;
+       -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
    }
-
-   .slick-prev:before,
-   .slick-next:before {
-       font-family: "Font Awesome 6 Free"; font-weight: 900; /* Usa FA6 */
-       font-size: 16px;
-       line-height: 1;
-       opacity: .9;
-       color: white;
-       -webkit-font-smoothing: antialiased;
-       -moz-osx-font-smoothing: grayscale;
-       display: block; /* Necessario per centrare */
-       position: absolute; /* Per centrare */
-       top: 50%; left: 50%; /* Per centrare */
-       transform: translate(-50%, -50%); /* Per centrare */
-   }
-
    .slick-prev { left: 10px; }
    .slick-next { right: 10px; }
-
    .slick-prev:before { content: '\f053'; } /* Freccia sinistra FA6 */
    .slick-next:before { content: '\f054'; } /* Freccia destra FA6 */
-
-   /* Slick Dots (se abilitati - ora disabilitati in JS) */
+   /* Slick Dots */
    .slick-dots {
-       position: relative; /* Non assoluto, sotto il carosello */
-       bottom: auto; /* Rimuovi posizionamento */
-       margin-top: 15px; /* Spazio sopra i dots */
-       display: block; width: 100%;
-       padding: 0; list-style: none; text-align: center;
+       position: relative; margin-top: 15px;
+       display: block; width: 100%; text-align: center;
    }
    .slick-dots li {
-       position: relative; display: inline-block;
-       width: 12px; height: 12px; /* Leggermente più grandi */
-       margin: 0 5px; padding: 0; cursor: pointer;
+       display: inline-block; width: 12px; height: 12px;
+       margin: 0 5px; cursor: pointer;
    }
    .slick-dots li button {
        font-size: 0; line-height: 0; display: block;
-       width: 12px; height: 12px; /* Coerente con li */
-       padding: 0; /* Rimosso padding interno */
+       width: 12px; height: 12px; padding: 0;
        cursor: pointer; color: transparent; border: 0; outline: none;
-       background: var(--colore-quaternario); /* Grigio scuro */
-       border-radius: 50%;
-       transition: background-color 0.3s ease;
+       background: var(--colore-quaternario);
+       border-radius: 50%; transition: background-color 0.3s ease;
    }
-   .slick-dots li button:hover {
-       background: var(--colore-secondario); /* Grigio chiaro su hover */
+   .slick-dots li button:hover { background: var(--colore-secondario); }
+   .slick-dots li.slick-active button { background: var(--colore-primario); }
+   
+   /* --- Pagina FABB & Merch (fabb_merch.html) --- */
+   /* Aggiungere <body class="fabb-merch-page"> in fabb_merch.html */
+   
+   body.fabb-merch-page {
+       text-align: center; /* Centra tutto il testo */
    }
-   .slick-dots li.slick-active button {
-        background: var(--colore-primario); /* Colore primario per attivo */
+   body.fabb-merch-page main {
+       text-align: center; /* Assicura centratura anche nel main */
    }
-
+   
+   /* Sfondi per sezioni FABB & Merch */
+   .fabb-merch-page .fabb-section,
+   .fabb-merch-page .merch-section {
+       position: relative;
+       z-index: 1;
+       overflow: hidden;
+       padding-top: 30px;
+       padding-bottom: 30px;
+       /* Rimuove stile sezione generica */
+       background-color: transparent;
+       border-left: none;
+       animation: none;
+       box-shadow: var(--ombra-box-media); /* Ripristina ombra */
+       border-radius: 10px;
+       margin-bottom: 2em;
+   }
+   /* Pseudo-elemento comune per sfondo */
+   .fabb-merch-page .fabb-section::before,
+   .fabb-merch-page .merch-section::before {
+       content: "";
+       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+       background-size: cover; background-position: center; background-repeat: no-repeat;
+       opacity: 0.1; /* Opacità base */
+       z-index: -1;
+       border-radius: inherit;
+   }
+   /* Sfondo specifico FABB */
+   .fabb-merch-page .fabb-section::before {
+       background-image: url('img merch/sfondo fabb.png');
+       opacity: 0.10; /* Opacità specifica */
+   }
+   /* Sfondo specifico Merch */
+   .fabb-merch-page .merch-section::before {
+       background-image: url('img merch/sfondo maglie.jpg');
+       /* opacity: 0.12; */ /* Opacità specifica (commentata) */
+   }
+   /* Contenuto sopra lo sfondo */
+   .fabb-merch-page .fabb-section > *,
+   .fabb-merch-page .merch-section > * {
+       position: relative; /* CORRETTO: Usa 'relative' */
+       z-index: 2;
+   }
+   
+   /* Lista download FABB */
+   .fabb-merch-page .fabb-download-list ul {
+       padding-left: 0; /* Rimuove padding */
+       display: inline-block; /* Permette centratura */
+       text-align: left; /* Testo allineato a sinistra */
+   }
+   .fabb-merch-page .fabb-download-list li {
+       margin-bottom: 10px;
+   }
+   .fabb-merch-page .fabb-download-list a {
+       color: var(--colore-link-azzurro);
+   }
+   .fabb-merch-page .fabb-download-list a:hover {
+       color: var(--colore-primario);
+       text-decoration: underline;
+   }
+   
+   /* Video Container */
+   .fabb-merch-page .video-container {
+       margin-bottom: 30px;
+       /* Iframe è inline-block, centratura ereditata da body */
+   }
+   .fabb-merch-page .video-container iframe {
+       max-width: 100%; /* Responsivo */
+       border-radius: 8px; /* Angoli arrotondati */
+       box-shadow: var(--ombra-box-leggera);
+   }
+   
+   /* Griglia Merchandise */
+   .fabb-merch-page .merch-grid {
+       display: grid;
+       gap: 20px;
+       margin-top: 20px;
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Default responsivo */
+       max-width: 800px; /* Limita larghezza per poche immagini */
+       margin-left: auto;
+       margin-right: auto;
+   }
+   /* Forza due colonne se specificato */
+   .fabb-merch-page .merch-grid.two-items {
+       grid-template-columns: 1fr 1fr;
+   }
+   .fabb-merch-page .merch-item {
+       text-align: center;
+       /* Stili opzionali per item */
+       /* background-color: rgba(0,0,0,0.2); */
+       /* padding: 15px; */
+       /* border-radius: 8px; */
+   }
+   .fabb-merch-page .merch-item img {
+       margin: 0 auto 10px auto; /* Centra e spazio sotto */
+       border-radius: 4px;
+       box-shadow: var(--ombra-box-leggera);
+   }
+   
    /* ==========================================================================
       6. Sezione Social Feeds (Home)
       ========================================================================== */
-
-   /* Stile opzionale per la sezione contenitore principale */
+   
    .social-feeds-section {
-       /* Rimuove stili sezione generica se non li vuoi qui */
        background-color: transparent;
        border-left: none;
        animation: none;
        box-shadow: none;
-       padding-top: 1em; /* Meno padding sopra se il titolo è già spaziato */
+       padding-top: 1em;
    }
-
    .social-feeds-container {
        display: flex;
-       justify-content: space-around; /* Spazio attorno ai box */
-       align-items: stretch; /* Allunga i box se hanno altezze diverse (prima di aspect-ratio) */
-       flex-wrap: wrap; /* Va a capo su schermi piccoli */
-       gap: 2em; /* Spazio tra i box */
-       margin-top: 1.5em; /* Spazio sotto il titolo della sezione */
+       justify-content: space-around;
+       align-items: stretch;
+       flex-wrap: wrap;
+       gap: 2em;
+       margin-top: 1.5em;
    }
-
    .feed-box {
-       flex: 1 1 400px; /* Base di 400px, cresce e si restringe, minimo 40% circa */
-       max-width: 45%; /* Limita larghezza massima su schermi grandi */
-       aspect-ratio: 1 / 1; /* *** MANTIENE IL BOX QUADRATO *** */
-       background-color: var(--colore-sfondo-elemento-chiaro); /* Sfondo semi-trasparente */
+       flex: 1 1 400px;
+       max-width: 45%;
+       aspect-ratio: 1 / 1; /* Mantiene quadrato */
+       background-color: var(--colore-sfondo-elemento-chiaro);
        border-radius: 10px;
        padding: 1.5em;
-       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
-       display: flex; /* Per organizzare titolo e contenuto */
-       flex-direction: column; /* Titolo sopra, contenuto sotto */
-       overflow: hidden; /* *** NASCONDE CONTENUTO CHE ESCE DAL BOX QUADRATO *** */
+       box-shadow: var(--ombra-box-media);
+       display: flex;
+       flex-direction: column;
+       overflow: hidden; /* Nasconde contenuto extra */
        transition: transform 0.3s ease, box-shadow 0.3s ease;
    }
-
    .feed-box:hover {
        transform: translateY(-5px);
-       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+       box-shadow: var(--ombra-box-forte);
    }
-
    .feed-box h3 {
-       color: var(--colore-primario); /* Giallo */
+       color: var(--colore-primario);
        margin-top: 0;
        margin-bottom: 1em;
        text-align: center;
        font-size: 1.6em;
        border-bottom: 2px solid var(--colore-quaternario);
        padding-bottom: 0.5em;
-       flex-shrink: 0; /* Impedisce al titolo di restringersi */
+       flex-shrink: 0;
    }
-
-   .feed-box h3 i { /* Icona social nel titolo */
-       margin-right: 0.5em;
-   }
-
+   .feed-box h3 i { margin-right: 0.5em; }
    .feed-content {
-       flex-grow: 1; /* Occupa lo spazio rimanente */
-       overflow: hidden; /* *** NASCONDE CONTENUTO CHE ESCE *** */
-       position: relative; /* *** NECESSARIO PER POSIZIONARE L'IFRAME *** */
-       display: flex;
+       flex-grow: 1;
+       overflow: hidden;
+       position: relative;
+       display: flex; /* Per centrare iframe */
        justify-content: center;
        align-items: center;
    }
-
-/* Placeholder text (verrà nascosto se il feed carica) */
-.feed-content p {
-    text-align: center;
-    /* Rimosso margin-top: 2em; perché il flex center si occupa del posizionamento */
-    color: var(--colore-terziario);
-    position: absolute; /* Lo mettiamo assoluto per non interferire con il flex centering dell'iframe */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%; /* Larghezza per il testo placeholder */
-    z-index: 1; /* Sopra l'iframe se questo non carica */
-}
-.feed-content p a {
-    color: var(--colore-link-footer);
-    font-weight: bold;
-}
-.feed-content p a:hover {
-    color: var(--colore-link-footer-hover);
-}
-
-/* *** MODIFICHE PER CENTRARE L'IFRAME FACEBOOK *** */
-/* Seleziona il div del plugin e l'iframe al suo interno */
-.facebook-feed .feed-content .fb-page,
-.facebook-feed .feed-content .fb-page iframe {
-    /* Rimuoviamo position: absolute e le coordinate top/left/transform */
-    /* position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%); */
-
-    /* Rimuoviamo width e height forzate al 100% */
-    /* width: 100% !important; */
-    /* height: 100% !important; */
-
-    /* Lasciamo che l'iframe prenda la sua dimensione naturale o quella data da FB */
-    /* Potrebbe essere necessario impostare una max-width/max-height se l'iframe diventa troppo grande */
-    max-width: 100%;
-    max-height: 100%; /* Limita l'altezza a quella del contenitore .feed-content */
-    border: none;           /* Rimuovi bordi iframe */
-    visibility: visible;    /* Assicura visibilità */
-    z-index: 0;             /* Sta sotto il testo placeholder */
-    display: block; /* Assicura che sia un blocco per la centratura flex */
-}
-/* *** FINE MODIFICHE IFRAME *** */
-
-
+   /* Placeholder text */
+   .feed-content p {
+       text-align: center;
+       color: var(--colore-terziario);
+       position: absolute;
+       top: 50%; left: 50%;
+       transform: translate(-50%, -50%);
+       width: 90%;
+       z-index: 1; /* Sopra iframe se non carica */
+   }
+   .feed-content p a { color: var(--colore-link-footer); font-weight: bold; }
+   .feed-content p a:hover { color: var(--colore-link-footer-hover); }
+   
+   /* Stili per iframe Facebook (centrato con flex) */
+   .facebook-feed .feed-content .fb-page,
+   .facebook-feed .feed-content .fb-page iframe {
+       max-width: 100%;
+       max-height: 100%; /* Limita altezza al contenitore */
+       border: none;
+       visibility: visible;
+       z-index: 0; /* Sotto placeholder */
+       display: block; /* Necessario per flex */
+   }
+   
    /* ==========================================================================
       7. Utilità
       ========================================================================== */
-
-   .text-center {
-       text-align: center;
-   }
-
+   
+   .text-center { text-align: center; }
+   
    /* ==========================================================================
       8. Media Queries (Responsività)
       ========================================================================== */
-
-   @media (max-width: 900px) { /* Sotto i 900px, ad esempio */
+   
+   @media (max-width: 900px) {
+       /* Social Feeds */
        .feed-box {
-           flex-basis: 80%; /* Occupa più larghezza */
+           flex-basis: 80%;
            max-width: 80%;
-           margin-left: auto; /* Centra se c'è spazio */
-           margin-right: auto; /* Centra se c'è spazio */
-           /* aspect-ratio: 1 / 1; -- Mantenuto */
+           margin-left: auto;
+           margin-right: auto;
        }
    }
-
+   
    @media (max-width: 768px) {
        /* --- Layout Base --- */
        .navbar {
-           justify-content: space-between; /* Logo a sinistra, toggle a destra */
+           justify-content: space-between;
            padding: 1em 1.5em;
        }
        .navbar-logo {
-           position: static; /* Rimuove posizionamento assoluto */
-           transform: none;
-           font-size: 1.8em;
-           margin-right: auto; /* Spinge il toggle a destra */
+           position: static; transform: none;
+           font-size: 1.8em; margin-right: auto;
        }
-        .navbar-logo img {
-           height: 40px;
-       }
-       .navbar-links {
-           display: none; /* Nascosti su mobile */
-       }
+       .navbar-logo img { height: 40px; }
+       .navbar-links { display: none; }
        .menu-toggle {
-           display: flex; /* Mostra hamburger */
-           position: static; /* Rimuove posizionamento assoluto */
-           transform: none;
-           margin-left: 1em; /* Spazio dal logo */
+           display: flex; position: static; transform: none;
+           margin-left: 1em;
        }
-
+   
        .hero { padding: 6em 1.5em; }
        .hero-title { font-size: 2.8em; }
        .hero-subtitle { font-size: 1.4em; }
-
+   
        .section { padding: 2.5em 1.5em; border-left-width: 6px; }
        .section-title { font-size: 2.2em; }
-
+   
        .contact-social { flex-direction: column; text-align: center; padding: 2.5em 1.5em; }
        .contact-info { margin-right: 0; margin-bottom: 2em; }
        .social-links { margin-top: 1em; }
        .social-links a { font-size: 2em; margin: 0 0.8em; }
-
+   
        /* --- Specifici per Pagina --- */
        /* Gilda */
        .league-logos { justify-content: center; gap: 1.5em; }
        .league-logos img { max-width: 120px; max-height: 80px; }
-
+   
        /* Chi Siamo */
-        .member-grid { grid-template-columns: 1fr; } /* Una colonna */
-        .member-card img { width: 120px; height: 120px; }
-
+       .member-grid { grid-template-columns: 1fr; } /* Una colonna */
+       .member-card img { width: 120px; height: 120px; }
+   
        /* Roccageddon (index) */
        .roccageddon-info { padding: 2em 1.5em; }
        .roccageddon-info img { max-width: 30%; }
-
+   
        /* Roccageddon (Pagina) */
        body.roccageddon-page .sezione-intro,
        #roccageddon-2024,
-       #roccageddon-2025 {
-           padding: 1.5em;
-       }
+       #roccageddon-2025 { padding: 1.5em; }
        body.roccageddon-page .sezione-intro h2,
        #roccageddon-2024 h2,
-       #roccageddon-2025 h2 {
-           font-size: 1.8em;
-       }
-        .classifica-immagine { max-width: 100%; } /* Occupa tutta larghezza */
-
-        /* Galleria Roccageddon */
-       .galleria-foto { max-width: 100%; } /* Occupa tutta larghezza */
+       #roccageddon-2025 h2 { font-size: 1.8em; }
+       .classifica-immagine { max-width: 100%; }
+   
+       /* Galleria Roccageddon */
+       .galleria-foto { max-width: 100%; }
        .galleria-foto img { max-height: 250px; }
        .slick-prev, .slick-next { width: 25px; height: 25px; }
-       .slick-prev { left: 5px; }
-       .slick-next { right: 5px; }
+       .slick-prev { left: 5px; } .slick-next { right: 5px; }
        .slick-prev:before, .slick-next:before { font-size: 14px; }
-
+   
        /* News (index) */
-       body.index .section ul#index-news-list { padding: 1.5em; }
-
+       body.index .index-news-section { padding: 1.5em; }
+   
+       /* FABB & Merch */
+       .fabb-merch-page .merch-grid.two-items {
+           grid-template-columns: 1fr; /* Una colonna su mobile */
+           max-width: 90%;
+       }
+   
    } /* Chiusura @media (max-width: 768px) */
-
-
+   
+   
    /* Media Query specifica per la lista news con thumbnail su schermi piccoli */
    @media (max-width: 600px) {
        /* Selettore più specifico per evitare conflitti */
-       body.news .news-list li,
-       body.index .news-list li.has-thumbnail {
-           flex-direction: column; /* Immagine sopra testo */
-           align-items: center; /* Centra immagine e testo */
+       .news-list li.has-thumbnail {
+           flex-direction: column;
+           align-items: center;
            text-align: center;
        }
-
        .news-thumbnail {
-           max-width: 250px; /* Più grande su mobile */
+           max-width: 250px;
            margin-right: 0;
            margin-bottom: 1em;
        }
-
-        .news-content {
-           width: 100%;
-       }
-
+       .news-content { width: 100%; }
+   
        /* Social Feeds su mobile */
        .feed-box {
-           flex-basis: 95%; /* Quasi tutta la larghezza */
+           flex-basis: 95%;
            max-width: 95%;
-           /* Potresti voler rimuovere aspect-ratio su mobile se il contenuto è tanto */
+           /* Rimuovi aspect-ratio se il contenuto è troppo */
            /* aspect-ratio: auto; */
-           /* height: 400px; /* O un'altezza fissa */
+           /* height: 400px; */ /* O altezza fissa */
        }
-       .feed-box h3 {
-           font-size: 1.4em;
-       }
-
-       
+       .feed-box h3 { font-size: 1.4em; }
+   
    } /* Chiusura @media (max-width: 600px) */
+   
+   /* Stili per il WIP nell'header della pagina FABB & Merch */
+.fabb-merch-page .header-wip {
+    display: flex; /* Mette icona e testo sulla stessa riga */
+    align-items: center; /* Allinea verticalmente icona e testo */
+    justify-content: center; /* Centra il blocco WIP */
+    margin-bottom: 1.5em; /* Spazio sotto il WIP, prima del titolo */
+    padding: 0.5em 1em; /* Padding interno */
+    background-color: rgba(255, 193, 7, 0.2); /* Sfondo giallo molto trasparente */
+    border: 1px solid var(--colore-primario); /* Bordo giallo */
+    border-radius: 20px; /* Angoli arrotondati */
+    display: inline-flex; /* Per adattarsi al contenuto e permettere centratura */
+    max-width: 90%; /* Limita larghezza */
+    /* Aggiunta animazione */
+    animation: pulse-wip 2s infinite; /* Nome animazione, durata, ripetizione infinita */
+    transform-origin: center; /* Assicura che scali dal centro */
+    
+}
 
-   /* Stile per lo sfondo dell'header nella pagina Chi Siamo */
-.chisiamo-page .hero.chisiamo-hero {
-    position: relative; /* Necessario per posizionare il ::before */
-    z-index: 1; /* Assicura che l'header sia sopra eventuali elementi sottostanti */
-    overflow: hidden; /* Evita che lo sfondo esca dai bordi se necessario */
-  }
-  
-  .chisiamo-page .hero.chisiamo-hero::before {
-    content: ""; /* Obbligatorio per i pseudo-elementi */
-    position: absolute; /* Posiziona lo sfondo rispetto all'header */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Assicurati che il percorso dell'immagine sia corretto! */
-    /* Presumo che l'immagine sia nella cartella 'img chisiamo/' */
-    background-image: url('img chisiamo/tutti.jpg');
-    background-size: cover; /* Copre l'intera area dell'header */
-    background-position: center; /* Centra l'immagine */
-    background-repeat: no-repeat; /* Non ripetere l'immagine */
-    opacity: 0.3; /* Regola questo valore (da 0.0 a 1.0) per la trasparenza desiderata */
-    z-index: -1; /* Mette lo sfondo dietro il contenuto (titolo, sottotitolo) */
-  }
-  
-  /* Opzionale: Assicura che il contenuto dell'header sia leggibile */
-  .chisiamo-page .hero.chisiamo-hero .hero-content {
-     position: relative; /* Necessario se usi z-index negativo sul ::before */
-     z-index: 2; /* Assicura che il testo sia sopra lo sfondo */
-     /* Potresti dover aggiungere un colore di sfondo leggero o un'ombra al testo
-        se la leggibilità è compromessa dall'immagine di sfondo */
-     /* Esempio: text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); */
-  }
-  /* Stile per le liste delle squadre leggendarie nelle card dei membri */
-.member-card .legendary-teams ul {
-    list-style-type: none; /* Rimuove i pallini */
-    padding-left: 0;       /* Rimuove il padding sinistro predefinito delle liste */
-    text-align: center;    /* Centra il testo all'interno della lista */
-    margin-top: 5px;       /* Aggiunge un piccolo spazio sopra la lista */
-  }
-  
-  /* Opzionale: Aggiungere un po' di spazio tra i link delle squadre */
-  .member-card .legendary-teams ul li {
-    margin-bottom: 5px; /* Spazio sotto ogni nome di squadra */
-  }
-  
-  .member-card .legendary-teams h4 {
-    color: #FFD700; /* Giallo oro */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombra leggera scura */
-  }
-  
+.fabb-merch-page .header-wip-icon {
+    width: 150px; /* Dimensione icona */
+    height: 150px;
+    margin-right: 0.8em; /* Spazio tra icona e testo */
+    opacity: 0.9;
+}
+
+.fabb-merch-page .header-wip-text {
+    color: var(--colore-primario); /* Colore testo giallo */
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Keyframes per l'animazione pulsante */
+@keyframes pulse-wip {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); /* Ombra gialla trasparente */
+    }
+    70% {
+        transform: scale(1.03); /* Leggero ingrandimento */
+        box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); /* Ombra che svanisce */
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+    }
+}
