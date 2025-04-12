@@ -1359,3 +1359,8 @@
     margin-bottom: 5px; /* Spazio sotto ogni nome di squadra */
   }
   
+  .member-card .legendary-teams h4 {
+    color: #FFD700; /* Giallo oro */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombra leggera scura */
+  }
+  
