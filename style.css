@@ -36,10 +36,10 @@
        --colore-sfondo-overlay-leggero: rgba(0, 0, 0, 0.3); /* Overlay leggero (30%) */
        --colore-sfondo-overlay-molto-leggero: rgba(0, 0, 0, 0.1); /* Overlay molto leggero (10%) */
        --colore-sfondo-elemento-chiaro: rgba(255, 255, 255, 0.1); /* Sfondo chiaro traslucido */
-       --colore-sfondo-card-membro: #f9f9f9; /* Sfondo card membro (chiaro) - Ripristinato */
-       --colore-bordo-card-membro: #eee; /* Bordo card membro - Ripristinato */
-       --colore-sfondo-social-box: linear-gradient(to bottom right, #3817ca, #03032c); /* Gradiente sottile per social box */
-       --colore-bordo-social-box: #3817ca; /* Bordo per social box */
+       --colore-sfondo-card-membro: linear-gradient(to bottom right, #000000, #03032c);/* Sfondo card membro (chiaro) - Ripristinato */
+       --colore-bordo-card-membro: #e0a800; /* Bordo card membro - Ripristinato */
+       --colore-sfondo-social-box: linear-gradient(to bottom right, #000000, #03032c); /* Gradiente sottile per social box */
+       --colore-bordo-social-box: #e0a800; /* Bordo per social box */
        --colore-sfondo-wip: rgba(255, 193, 7, 0.2); /* Sfondo WIP trasparente */
 
        /* Navbar */
@@ -648,16 +648,18 @@
        color: var(--colore-terziario);
    }
    .member-card {
-       background-color: var(--colore-sfondo-elemento-chiaro); /* Sfondo originale */
-       border-radius: 10px;
-       padding: 2em;
-       text-align: center;
-       box-shadow: var(--ombra-box-leggera);
-       transition: transform 0.3s ease, box-shadow 0.3s ease;
-       display: flex; /* Per allineare contenuto verticalmente */
-       flex-direction: column;
-       color: var(--colore-secondario); /* Testo chiaro originale */
-   }
+    /* background-color: var(--colore-sfondo-elemento-chiaro); */ /* Rimuovi o commenta la vecchia riga */
+    background: var(--colore-sfondo-card-membro); /* Usa 'background' per il gradiente e la variabile corretta */
+    border: 2px solid var(--colore-bordo-card-membro); /* Aggiungi il bordo alla card usando la variabile corretta (ho messo 2px come esempio) */
+    border-radius: 10px;
+    padding: 2em;
+    text-align: center;
+    box-shadow: var(--ombra-box-leggera);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease; /* Aggiungi transizioni se vuoi */
+    display: flex;
+    flex-direction: column;
+    color: var(--colore-secondario);
+}
    .member-card:hover {
        transform: translateY(-5px);
        box-shadow: var(--ombra-box-media);
