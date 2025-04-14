@@ -145,117 +145,140 @@
 <!-- Script di inizializzazione per i caroselli Slick E GENERAZIONE IMMAGINI -->
 <script>
     $(document).ready(function () {
-        // --- Generazione dinamica immagini 2025 (invariato) ---
+
+        // --- Generazione dinamica immagini 2025 (CON ONERROR) ---
         const galleria2025 = $('#galleria-2025');
         const basePath2025 = 'img roccageddon/Foto 2025/';
-        const numeroFoto2025 = 153;
+        const numeroFoto2025 = 153; // Numero massimo teorico
         const nomeBaseFoto2025 = 'Roccageddon_2025-';
         const estensioneFoto2025 = '.jpg';
+
         if (galleria2025.length) {
+            let immaginiAggiunte2025 = 0; // Contatore per immagini effettivamente aggiunte
             for (let i = 1; i <= numeroFoto2025; i++) {
-                const numeroFormattato2025 = i.toString().padStart(3, '0');
+                const numeroFormattato2025 = i.toString().padStart(3, '0'); // Mantiene 3 cifre
                 const nomeFile2025 = nomeBaseFoto2025 + numeroFormattato2025 + estensioneFoto2025;
                 const altText2025 = `Foto Roccageddon 2025 - ${numeroFormattato2025}`;
-                const imageHtml2025 = `<div><img src="${basePath2025}${nomeFile2025}" alt="${altText2025}" loading="lazy"></div>`;
+
+                // *** MODIFICA: Aggiunto onerror ***
+                // 'this' si riferisce all'elemento <img>.
+                // 'this.parentNode' è il <div> che lo contiene.
+                // Impostiamo display='none' sul div genitore se l'immagine non carica.
+                // Aggiungiamo anche una classe 'image-container' al div per potenziali usi futuri
+                const imageHtml2025 = `<div class="image-container"><img src="${basePath2025}${nomeFile2025}" alt="${altText2025}" loading="lazy" onerror="this.parentNode.style.display='none'; console.warn('Immagine non trovata e nascosta:', this.src);"></div>`;
+
                 galleria2025.append(imageHtml2025);
+                immaginiAggiunte2025++; // Incrementa comunque, l'onerror gestirà i mancanti
             }
-            console.log(`Aggiunte ${numeroFoto2025} immagini alla galleria 2025.`);
+            // Nota: Il log ora mostra il numero *tentato*, non quelle caricate con successo.
+            console.log(`Tentativo di aggiungere ${immaginiAggiunte2025} immagini alla galleria 2025.`);
         } else {
             console.warn("Contenitore galleria 2025 non trovato.");
         }
         // --- Fine generazione 2025 ---
 
 
-        // --- Generazione dinamica immagini 2024 (invariato) ---
+        // --- Generazione dinamica immagini 2024 (CON ONERROR) ---
         const galleria2024 = $('#galleria-2024');
         const basePath2024 = 'img roccageddon/Foto 2024/';
-        const numeroFoto2024 = 85;
+        const numeroFoto2024 = 85; // Numero massimo teorico
         const nomeBaseFoto2024 = 'Roccageddon_2024-';
         const estensioneFoto2024 = '.jpg';
+
         if (galleria2024.length) {
+            let immaginiAggiunte2024 = 0;
             for (let i = 1; i <= numeroFoto2024; i++) {
-                const numeroFormattato2024 = i.toString().padStart(2, '0');
+                const numeroFormattato2024 = i.toString().padStart(2, '0'); // Mantiene 2 cifre
                 const nomeFile2024 = nomeBaseFoto2024 + numeroFormattato2024 + estensioneFoto2024;
                 const altText2024 = `Foto Roccageddon 2024 - ${numeroFormattato2024}`;
-                const imageHtml2024 = `<div><img src="${basePath2024}${nomeFile2024}" alt="${altText2024}" loading="lazy"></div>`;
+
+                // *** MODIFICA: Aggiunto onerror ***
+                const imageHtml2024 = `<div class="image-container"><img src="${basePath2024}${nomeFile2024}" alt="${altText2024}" loading="lazy" onerror="this.parentNode.style.display='none'; console.warn('Immagine non trovata e nascosta:', this.src);"></div>`;
+
                 galleria2024.append(imageHtml2024);
+                immaginiAggiunte2024++;
             }
-            console.log(`Aggiunte ${numeroFoto2024} immagini alla galleria 2024.`);
+            console.log(`Tentativo di aggiungere ${immaginiAggiunte2024} immagini alla galleria 2024.`);
         } else {
              console.warn("Contenitore galleria 2024 non trovato.");
         }
         // --- Fine generazione 2024 ---
 
-        // --- Inizializza Slick DOPO il caricamento completo della finestra ---
-        $(window).on('load', function() {
-            // Inizializza Slick su TUTTE le gallerie (anche se nascoste)
-            $('.galleria-foto').slick({
-                // *** OPZIONI SLICK MODIFICATE ***
-                dots: false,          // Rimuove i pallini sotto
-                infinite: true,
-                speed: 500,
-                slidesToShow: 4,      // Mostra 4 slide per default
-                slidesToScroll: 1,    // Scorre una slide alla volta
-                variableWidth: true,  // Permette larghezze diverse
-                adaptiveHeight: false,// False se slidesToShow > 1
-                lazyLoad: 'ondemand',
-                arrows: true,
-                // *** FINE OPZIONI SLICK MODIFICATE ***
-                responsive: [
-                    {
-                        breakpoint: 1024, // Sotto 1024px
-                        settings: {
-                            slidesToShow: 3, // Mostra 3 slide
-                            variableWidth: true,
-                        }
-                    },
-                    {
-                        breakpoint: 768, // Sotto 768px (tablet)
-                        settings: {
-                            slidesToShow: 2, // Mostra 2 slide
-                            variableWidth: true,
-                            centerMode: false
-                        }
-                    },
-                    {
-                        breakpoint: 480, // Sotto 480px (mobile)
-                        settings: {
-                            slidesToShow: 1, // Mostra 1 slide
-                            variableWidth: false,
-                            centerMode: false
-                        }
-                    }
-                ]
-            });
-            console.log('Slick inizializzato su tutte le gallerie (anche nascoste).');
 
-            // --- GESTIONE CLICK MODIFICATA (TOGGLE) ---
+        // --- Inizializza Slick e gestione bottoni (Logica quasi invariata) ---
+        // L'inizializzazione su $(window).on('load') è ancora una buona idea,
+        // perché aspetta che il browser abbia *tentato* di caricare le immagini.
+        $(window).on('load', function() {
+            $('.galleria-foto').each(function() {
+                const $gallery = $(this);
+                // Controlla se ci sono elementi *visibili* dopo che onerror potrebbe averne nascosti alcuni
+                // Nota: Questo controllo potrebbe non essere perfetto se onerror è lento,
+                // ma Slick dovrebbe comunque gestire bene gli elementi nascosti.
+                const visibleItems = $gallery.children().filter(function() {
+                    return $(this).css('display') !== 'none';
+                }).length;
+
+                if (visibleItems > 0) {
+                    $gallery.slick({
+                        dots: false,
+                        infinite: true, // Slick gestisce il loop anche con elementi nascosti
+                        speed: 500,
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                        variableWidth: true,
+                        adaptiveHeight: false,
+                        lazyLoad: 'ondemand',
+                        arrows: true,
+                        responsive: [
+                            { breakpoint: 1024, settings: { slidesToShow: 3, variableWidth: true } },
+                            { breakpoint: 768, settings: { slidesToShow: 2, variableWidth: true, centerMode: false } },
+                            { breakpoint: 480, settings: { slidesToShow: 1, variableWidth: false, centerMode: false } }
+                        ]
+                    });
+                    console.log(`Slick inizializzato su ${$gallery.attr('id')}. Trovati ${visibleItems} elementi visibili.`);
+                } else {
+                    console.log(`Slick NON inizializzato su ${$gallery.attr('id')} perché non ci sono elementi visibili.`);
+                    // Nascondi il bottone corrispondente se la galleria risulta vuota
+                    const galleryId = $gallery.attr('id');
+                    $(`.mostra-galleria-btn[data-target="#${galleryId}"]`).hide();
+                }
+            });
+
+            // Gestione click bottone (Toggle) - Invariata
             $('.mostra-galleria-btn').on('click', function() {
-                const $button = $(this); // Memorizza il bottone cliccato
+                const $button = $(this);
                 const targetId = $button.data('target');
                 const $galleryToShow = $(targetId);
-                const year = targetId.includes('2025') ? '2025' : '2024'; // Estrai l'anno per il testo
+                const year = targetId.includes('2025') ? '2025' : '2024';
 
-                if ($galleryToShow.length) {
-                    // Usa fadeToggle per mostrare/nascondere con effetto
+                // Controlla se la galleria esiste e ha elementi visibili prima di fare toggle/setPosition
+                const visibleItemsInTarget = $galleryToShow.children().filter(function() {
+                    return $(this).css('display') !== 'none';
+                }).length;
+
+                if ($galleryToShow.length && visibleItemsInTarget > 0) {
                     $galleryToShow.fadeToggle(400, function() {
-                        // Questa funzione viene eseguita DOPO l'animazione
                         if ($galleryToShow.is(':visible')) {
-                            // Se la galleria è ora VISIBILE:
-                            $galleryToShow.slick('setPosition');
+                            $galleryToShow.slick('setPosition'); // Fondamentale dopo aver mostrato
                             $button.text(`Nascondi Foto ${year}`);
                             console.log('Galleria ' + targetId + ' mostrata e setPosition chiamato.');
                         } else {
-                            // Se la galleria è ora NASCOSTA:
                             $button.text(`Mostra Foto ${year}`);
                             console.log('Galleria ' + targetId + ' nascosta.');
                         }
                     });
                 } else {
-                    console.warn('Galleria non trovata per il target: ' + targetId);
+                    console.warn('Tentativo di mostrare/nascondere galleria vuota o non trovata: ' + targetId);
+                    // Potresti voler nascondere il bottone qui se la galleria è vuota
+                    if (visibleItemsInTarget === 0) {
+                        $button.hide();
+                    }
                 }
             });
-             // --- FINE GESTIONE CLICK MODIFICATA ---
+
+            // Nascondi le gallerie all'inizio (dopo l'inizializzazione di Slick)
+            $('.galleria-foto').hide();
+            console.log("Gallerie nascoste inizialmente.");
 
         }); // --- Fine $(window).on('load') ---
 
