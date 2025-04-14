@@ -15,7 +15,15 @@
        --colore-testo-scuro: #222;
        --colore-link-azzurro: #add8e6;
        --colore-giallo-oro: #FFD700; /* Giallo oro specifico */
-   
+       --colore-link-standard: #007bff; /* Blu standard per link (usato in card) */
+       --colore-link-standard-hover: #0056b3; /* Blu scuro per hover */
+       --colore-pdf-icon: #dc3545; /* Rosso per icona PDF */
+       --colore-facebook-icon: #1877F2; /* Blu Facebook */
+       --colore-instagram-icon-start: #fdf497; /* Gradiente Instagram */
+       --colore-instagram-icon-mid1: #fd5949;
+       --colore-instagram-icon-mid2: #d6249f;
+       --colore-instagram-icon-end: #285AEB;
+
        /* Sfondi */
        --colore-sfondo-gradiente-start: #00001a; /* Blu molto scuro */
        --colore-sfondo-gradiente-end: #1a1a3d; /* Blu scuro */
@@ -28,7 +36,12 @@
        --colore-sfondo-overlay-leggero: rgba(0, 0, 0, 0.3); /* Overlay leggero (30%) */
        --colore-sfondo-overlay-molto-leggero: rgba(0, 0, 0, 0.1); /* Overlay molto leggero (10%) */
        --colore-sfondo-elemento-chiaro: rgba(255, 255, 255, 0.1); /* Sfondo chiaro traslucido */
-   
+       --colore-sfondo-card-membro: #f9f9f9; /* Sfondo card membro (chiaro) - Ripristinato */
+       --colore-bordo-card-membro: #eee; /* Bordo card membro - Ripristinato */
+       --colore-sfondo-social-box: linear-gradient(to bottom right, #3817ca, #03032c); /* Gradiente sottile per social box */
+       --colore-bordo-social-box: #3817ca; /* Bordo per social box */
+       --colore-sfondo-wip: rgba(255, 193, 7, 0.2); /* Sfondo WIP trasparente */
+
        /* Navbar */
        --colore-testo-navbar: var(--colore-testo-chiaro);
        --colore-testo-link-navbar: var(--colore-secondario);
@@ -36,7 +49,7 @@
        --colore-sfondo-link-navbar-hover: var(--colore-primario);
        --colore-testo-mobile-nav: var(--colore-testo-chiaro);
        --colore-testo-mobile-nav-hover: var(--colore-primario); /* Giallo su hover mobile */
-   
+
        /* Hero */
        --colore-testo-hero: var(--colore-testo-chiaro);
        --colore-titolo-hero: var(--colore-primario);
@@ -45,19 +58,19 @@
        --colore-sfondo-bottone-hero: var(--colore-primario);
        --colore-bottone-hero-hover: var(--colore-testo-chiaro);
        --colore-sfondo-bottone-hero-hover: #e0a800; /* Variazione primario */
-   
+
        /* Sezioni Generiche */
        --colore-bordo-sezione: var(--colore-primario);
        --colore-titolo-sezione: var(--colore-primario);
        --colore-bordo-titolo-sezione: var(--colore-quaternario);
-   
+
        /* News */
        --colore-testo-news: var(--colore-secondario);
        --colore-link-news: var(--colore-primario);
        --colore-link-news-hover: #e0a800; /* Variazione primario */
        --colore-data-news: var(--colore-terziario);
        --colore-bordo-news: #666; /* Grigio medio-scuro */
-   
+
        /* Footer */
        --colore-testo-footer: #eee; /* Quasi bianco */
        --colore-titolo-footer: var(--colore-primario);
@@ -67,29 +80,32 @@
        --colore-titolo-social: var(--colore-secondario);
        --colore-icona-social: var(--colore-primario);
        --colore-icona-social-hover: #e0a800; /* Variazione primario */
-   
+
        /* Ombre */
        --ombra-testo-leggera: 1px 1px 2px rgba(0, 0, 0, 0.5);
        --ombra-testo-media: 2px 2px 4px rgba(0, 0, 0, 0.7);
        --ombra-box-leggera: 0 2px 5px rgba(0, 0, 0, 0.3);
        --ombra-box-media: 0 4px 8px rgba(0, 0, 0, 0.4);
        --ombra-box-forte: 0 6px 12px rgba(0, 0, 0, 0.5);
+       --ombra-card-membro: 0 2px 5px rgba(0, 0, 0, 0.05); /* Ombra per card membro */
+       --ombra-card-membro-hover: 0 8px 15px rgba(0, 0, 0, 0.1); /* Ombra hover card membro */
+       --ombra-social-box: 0 1px 4px rgba(0, 0, 0, 0.04); /* Ombra per social box */
    }
-   
-   /* ==========================================================================
-      2. Stili di Base
-      ========================================================================== */
-   
+
+/* ==========================================================================
+   2. Stili di Base
+   ========================================================================== */
+
    *, *::before, *::after {
        box-sizing: border-box;
        margin: 0;
        padding: 0;
    }
-   
+
    html {
        scroll-behavior: smooth;
    }
-   
+
    body {
        font-family: 'Roboto Condensed', sans-serif;
        background: linear-gradient(to bottom, var(--colore-sfondo-gradiente-start), var(--colore-sfondo-gradiente-end));
@@ -97,19 +113,19 @@
        line-height: 1.6;
        overflow-x: hidden; /* Previene scroll orizzontale */
    }
-   
+
    /* Blocca scroll quando menu mobile è aperto */
    body.mobile-nav-open {
        overflow: hidden;
    }
-   
+
    img {
        max-width: 100%;
        height: auto;
        display: block; /* Rimuove spazio extra sotto le immagini */
        vertical-align: middle; /* Allinea meglio se inline */
    }
-   
+
    a {
        color: var(--colore-link-azzurro); /* Link azzurro di default */
        text-decoration: none;
@@ -118,15 +134,15 @@
    a:hover {
        color: var(--colore-primario); /* Giallo su hover */
    }
-   
+
    ul {
        list-style: none; /* Rimuove pallini di default */
    }
-   
-   /* ==========================================================================
-      3. Layout Principale (Navbar, Footer)
-      ========================================================================== */
-   
+
+/* ==========================================================================
+   3. Layout Principale (Navbar, Footer)
+   ========================================================================== */
+
    /* --- Navbar --- */
    .navbar {
        background-color: var(--colore-sfondo-navbar);
@@ -140,26 +156,26 @@
        top: 0;
        z-index: 1000; /* Assicura che sia sopra altri elementi */
    }
-   
+
    .navbar-logo {
        position: absolute;
        left: 2em;
        top: 50%;
        transform: translateY(-50%);
    }
-   
+
    .navbar-logo img {
        height: 50px;
    }
-   
+
    .navbar-links {
        display: flex;
    }
-   
+
    .navbar-links li {
        margin-left: 1.5em;
    }
-   
+
    .navbar-links a {
        color: var(--colore-testo-link-navbar);
        padding: 0.7em 1.2em;
@@ -167,13 +183,13 @@
        transition: background-color 0.3s ease, color 0.3s ease;
        display: block;
    }
-   
+
    .navbar-links a:hover,
    .navbar-links a.active {
        background-color: var(--colore-sfondo-link-navbar-hover);
        color: var(--colore-testo-link-navbar-hover);
    }
-   
+
    /* --- Menu Mobile --- */
    .menu-toggle {
        display: none; /* Nascosto per default */
@@ -188,7 +204,7 @@
        transform: translateY(-50%);
        z-index: 1011; /* Sopra il mobile nav */
    }
-   
+
    .menu-toggle .bar {
        width: 100%;
        height: 3px;
@@ -196,12 +212,12 @@
        transition: all 0.3s ease-in-out;
        border-radius: 1px;
    }
-   
+
    /* Animazione hamburger -> X */
    .menu-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
    .menu-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
-   
+
    .mobile-nav {
        display: none; /* Nascosto per default */
        flex-direction: column;
@@ -216,11 +232,11 @@
        z-index: 1010; /* Sotto il toggle ma sopra il resto */
        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
    }
-   
+
    .mobile-nav.open {
        display: flex; /* Mostra il menu */
    }
-   
+
    .mobile-nav a {
        display: block;
        color: var(--colore-testo-mobile-nav);
@@ -231,13 +247,13 @@
        margin: 0.5em 0;
        border-radius: 5px;
    }
-   
+
    .mobile-nav a:hover,
    .mobile-nav a.active {
        color: var(--colore-testo-mobile-nav-hover); /* Giallo */
        font-weight: bold;
    }
-   
+
    /* --- Footer --- */
    .contact-social {
        display: flex;
@@ -250,13 +266,13 @@
        box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.4);
        margin-top: 3em;
    }
-   
+
    .contact-info {
        text-align: center;
        flex: 1;
        margin-right: 2em; /* Spazio tra le due colonne */
    }
-   
+
    .contact-info h2 {
        color: var(--colore-titolo-footer);
        margin-bottom: 1em;
@@ -264,32 +280,32 @@
        border-bottom: 3px solid var(--colore-bordo-titolo-footer);
        padding-bottom: 0.7em;
    }
-   
+
    .contact-info p {
        margin-bottom: 1.5em;
        font-size: 1.15em;
    }
-   
+
    .contact-info a {
        color: var(--colore-link-footer);
        font-weight: bold;
    }
-   
+
    .contact-info a:hover {
        color: var(--colore-link-footer-hover);
        text-decoration: underline;
    }
-   
+
    .social-links {
        text-align: center;
        flex: 1;
    }
-   
+
    .social-links h3 {
        color: var(--colore-titolo-social);
        margin-bottom: 1em;
    }
-   
+
    .social-links a {
        color: var(--colore-icona-social);
        margin: 0 1em;
@@ -297,16 +313,16 @@
        transition: color 0.3s ease, transform 0.2s ease-in-out;
        display: inline-block; /* Per applicare transform */
    }
-   
+
    .social-links a:hover {
        color: var(--colore-icona-social-hover);
        transform: scale(1.1);
    }
-   
-   /* ==========================================================================
-      4. Componenti Comuni (Hero, Section, Bottoni, Sfondi)
-      ========================================================================== */
-   
+
+/* ==========================================================================
+   4. Componenti Comuni (Hero, Section, Bottoni, Sfondi)
+   ========================================================================== */
+
    /* --- Stile Base per Sfondi con Pseudo-Elemento --- */
    .has-background-image::before {
        content: '';
@@ -324,7 +340,7 @@
        position: relative;
        z-index: 1;
    }
-   
+
    /* --- Hero Section Base --- */
    .hero {
        color: var(--colore-testo-hero);
@@ -338,33 +354,33 @@
        background-color: var(--colore-sfondo-overlay-medio); /* Overlay scuro di base */
        z-index: 1; /* Contesto stacking */
    }
-   
+
    /* Contenuto Hero */
    .hero-content {
        position: relative; /* Sopra l'overlay/sfondo */
        z-index: 2;
        animation: fadeInUp 1s ease-out 0.5s both;
    }
-   
+
    @keyframes fadeInUp {
        from { opacity: 0; transform: translateY(20px); }
        to { opacity: 1; transform: translateY(0); }
    }
-   
+
    .hero-title {
        font-size: 3.5em;
        margin-bottom: 0.6em;
        color: var(--colore-titolo-hero);
        text-shadow: var(--ombra-testo-media);
    }
-   
+
    .hero-subtitle {
        font-size: 1.6em;
        margin-bottom: 1.8em;
        font-style: italic;
        color: var(--colore-sottotitolo-hero);
    }
-   
+
    .hero-button {
        display: inline-block;
        padding: 1.2em 2.5em;
@@ -376,13 +392,13 @@
        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out;
        box-shadow: var(--ombra-box-leggera);
    }
-   
+
    .hero-button:hover {
        background-color: var(--colore-sfondo-bottone-hero-hover);
        color: var(--colore-bottone-hero-hover);
        transform: scale(1.05);
    }
-   
+
    /* --- Sezione Generica --- */
    .section {
        padding: 3em 2em;
@@ -395,12 +411,12 @@
        position: relative; /* Per eventuali sfondi ::before */
        z-index: 1; /* Contesto stacking */
    }
-   
+
    @keyframes slideInLeft {
        from { opacity: 0; transform: translateX(-50px); }
        to { opacity: 1; transform: translateX(0); }
    }
-   
+
    .section-title {
        font-size: 2.5em;
        color: var(--colore-titolo-sezione);
@@ -410,14 +426,14 @@
        padding-bottom: 0.7em;
        text-align: center;
    }
-   
-   /* ==========================================================================
-      5. Stili Specifici per Pagina
-      ========================================================================== */
-   
+
+/* ==========================================================================
+   5. Stili Specifici per Pagina
+   ========================================================================== */
+
    /* --- Home (index.html) --- */
    /* Aggiungere <body class="index"> in index.html */
-   
+
    body.index .hero {
        background-color: transparent; /* Rimuove overlay base */
        position: relative; /* Necessario per ::before */
@@ -431,7 +447,7 @@
        opacity: 0.2;
        z-index: -1; /* Dietro il contenuto */
    }
-   
+
    /* Sezione News nella Home */
    body.index .index-news-section { /* Selettore per la section */
        background-color: transparent;
@@ -472,7 +488,7 @@
        border-bottom: none;
        margin-bottom: 0;
    }
-   
+
    /* Sezione Roccageddon nella Home */
    .roccageddon-info {
        text-align: center;
@@ -524,10 +540,10 @@
        text-decoration: underline;
        transform: scale(1.02);
    }
-   
+
    /* --- Pagina Gilda (gilda.html) --- */
    /* Aggiungere <body class="gilda"> in gilda.html */
-   
+
    body.gilda .hero {
        background-color: transparent; /* Rimuove overlay base */
        position: relative;
@@ -545,7 +561,7 @@
        opacity: 0.5;
        z-index: -1;
    }
-   
+
    .league-logos {
        display: flex;
        justify-content: space-around;
@@ -560,7 +576,7 @@
        max-height: 200px;
        object-fit: contain;
    }
-   
+
    .storia-gilda,
    .annunci-gilda {
        padding: 2em;
@@ -594,10 +610,10 @@
    .annunci-gilda li {
        margin-bottom: 0.8em;
    }
-   
+
    /* --- Pagina Chi Siamo (chisiamo.html) --- */
    /* Aggiungere <body class="chisiamo-page"> in chisiamo.html */
-   
+
    .chisiamo-page .hero {
        background-color: transparent; /* Rimuove overlay base */
        position: relative;
@@ -616,7 +632,8 @@
        z-index: 2;
        text-shadow: var(--ombra-testo-leggera); /* Migliora leggibilità */
    }
-   
+
+   /* Stili Card Membri (chisiamo.html) - Ripristinati */
    .member-grid {
        display: grid;
        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -630,9 +647,8 @@
        font-size: 1.8em;
        color: var(--colore-terziario);
    }
-   
    .member-card {
-       background-color: var(--colore-sfondo-elemento-chiaro);
+       background-color: var(--colore-sfondo-elemento-chiaro); /* Sfondo originale */
        border-radius: 10px;
        padding: 2em;
        text-align: center;
@@ -640,6 +656,7 @@
        transition: transform 0.3s ease, box-shadow 0.3s ease;
        display: flex; /* Per allineare contenuto verticalmente */
        flex-direction: column;
+       color: var(--colore-secondario); /* Testo chiaro originale */
    }
    .member-card:hover {
        transform: translateY(-5px);
@@ -687,10 +704,24 @@
        color: var(--colore-primario);
        text-decoration: underline;
    }
-   
+   /* Stile per Membri Ritirati (chisiamo.html) */
+   .retired-card img {
+       filter: grayscale(100%); /* Rende l'immagine in bianco e nero */
+       border-color: var(--colore-terziario); /* Bordo grigio per l'immagine */
+   }
+   .retired-card h3,
+   .retired-card p,
+   .retired-card h4,
+   .retired-card a {
+       color: var(--colore-terziario); /* Colori più spenti per il testo */
+   }
+   .retired-card a:hover {
+       color: var(--colore-secondario);
+   }
+
    /* --- Pagina News (news.html) --- */
    /* Aggiungere <body class="news"> in news.html */
-   
+
    body.news .hero {
        position: relative;
        z-index: 1;
@@ -717,7 +748,7 @@
        position: relative;
        z-index: 1; /* Sopra overlay e sfondo */
    }
-   
+
    /* Sfondo per la sezione lista news */
    body.news .news-list-section {
        background-color: transparent;
@@ -745,7 +776,7 @@
        position: relative;
        z-index: 2; /* Sopra lo sfondo della sezione */
    }
-   
+
    /* Stili Comuni Lista News (usati in news.html e index.html) */
    .news-list {
        margin-top: 2em;
@@ -807,7 +838,7 @@
        color: var(--colore-link-news-hover);
        text-decoration: underline;
    }
-   
+
    /* Stili specifici per la lista news in index.html (senza thumbnail affiancato) */
    body.index .news-list li:not(.has-thumbnail) {
        margin-bottom: 1.5em;
@@ -839,10 +870,10 @@
        margin-top: 0.5em;
        color: var(--colore-testo-news);
    }
-   
+
    /* --- Pagina Roccageddon (roccageddon.html) --- */
    /* Aggiungere <body class="roccageddon-page"> in roccageddon.html */
-   
+
    body.roccageddon-page .hero {
        background-color: transparent; /* Rimuove overlay base */
        position: relative;
@@ -869,12 +900,12 @@
        position: relative;
        z-index: 1;
    }
-   
+
    /* Centra tutto il testo nel main */
    body.roccageddon-page main {
        text-align: center;
    }
-   
+
    /* Sezione introduttiva Roccageddon */
    body.roccageddon-page .sezione-intro {
        padding: 2em;
@@ -893,7 +924,7 @@
        padding-bottom: 0.5em;
        font-size: 2em;
    }
-   
+
    /* Sezioni Edizione Roccageddon con sfondo */
    #roccageddon-2024,
    #roccageddon-2025 {
@@ -923,14 +954,14 @@
    /* Immagini di sfondo specifiche */
    #roccageddon-2024 { background-image: url('img roccageddon/Rocca24sfondo.jpg'); }
    #roccageddon-2025 { background-image: url('img roccageddon/Rocca25sfondo.jpg'); }
-   
+
    /* Contenuto sopra lo sfondo */
    #roccageddon-2024 > *,
    #roccageddon-2025 > * {
        position: relative;
        z-index: 2;
    }
-   
+
    /* Stili testo per sezioni con sfondo */
    #roccageddon-2024 h2, #roccageddon-2025 h2,
    #roccageddon-2024 h3, #roccageddon-2025 h3,
@@ -986,7 +1017,7 @@
        font-weight: bold;
        margin-right: 0.5em;
    }
-   
+
    /* Galleria Foto (Slick Carousel) */
    .galleria-foto {
        display: none; /* Nascondi di default */
@@ -1025,27 +1056,58 @@
        box-shadow: var(--ombra-box-leggera);
        margin: 0 auto;
    }
-   /* Slick Carousel Arrows */
-   .slick-prev, .slick-next {
-       font-size: 0; line-height: 0;
-       position: absolute; top: 50%;
-       width: 30px; height: 30px;
-       padding: 0; transform: translateY(-50%);
-       cursor: pointer; color: transparent; border: none; outline: none;
-       background: rgba(0, 0, 0, 0.5);
-       border-radius: 50%; z-index: 10;
+   /* Slick Carousel Arrows - Stile aggiornato */
+   .galleria-foto .slick-prev,
+   .galleria-foto .slick-next {
+       font-size: 0; /* Nasconde il testo */
+       line-height: 0;
+       position: absolute;
+       top: 50%;
+       display: block;
+       width: 40px; /* Larghezza del bottone */
+       height: 40px; /* Altezza del bottone */
+       padding: 0;
+       transform: translate(0, -50%);
+       cursor: pointer;
+       color: transparent; /* Nasconde eventuale colore testo residuo */
+       border: none;
+       outline: none;
+       background: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+       border-radius: 50%; /* Forma circolare */
+       z-index: 10; /* Assicura che siano sopra le immagini */
+       transition: background-color 0.3s ease; /* Transizione per hover */
    }
-   .slick-prev:hover, .slick-next:hover { background: rgba(0, 0, 0, 0.8); }
-   .slick-prev:before, .slick-next:before {
-       font-family: "Font Awesome 6 Free"; font-weight: 900;
-       font-size: 16px; line-height: 1; opacity: .9; color: white;
-       -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+   .galleria-foto .slick-prev:hover,
+   .galleria-foto .slick-next:hover {
+       background: rgba(0, 0, 0, 0.8); /* Sfondo più scuro */
    }
-   .slick-prev { left: 10px; }
-   .slick-next { right: 10px; }
-   .slick-prev:before { content: '\f053'; } /* Freccia sinistra FA6 */
-   .slick-next:before { content: '\f054'; } /* Freccia destra FA6 */
+   .galleria-foto .slick-prev {
+       left: -15px; /* Sposta leggermente fuori dalla galleria */
+   }
+   .galleria-foto .slick-next {
+       right: -15px; /* Sposta leggermente fuori dalla galleria */
+   }
+   .galleria-foto .slick-prev::before,
+   .galleria-foto .slick-next::before {
+       font-family: 'Font Awesome 6 Free'; /* Usa Font Awesome */
+       font-weight: 900; /* Usa lo stile solido */
+       font-size: 18px; /* Dimensione icona */
+       line-height: 1;
+       color: white; /* Colore icona */
+       opacity: 0.85;
+       -webkit-font-smoothing: antialiased;
+       -moz-osx-font-smoothing: grayscale;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+   }
+   .galleria-foto .slick-prev::before {
+       content: '\f053'; /* Codice Unicode per fa-chevron-left */
+   }
+   .galleria-foto .slick-next::before {
+       content: '\f054'; /* Codice Unicode per fa-chevron-right */
+   }
    /* Slick Dots */
    .slick-dots {
        position: relative; margin-top: 15px;
@@ -1064,17 +1126,17 @@
    }
    .slick-dots li button:hover { background: var(--colore-secondario); }
    .slick-dots li.slick-active button { background: var(--colore-primario); }
-   
+
    /* --- Pagina FABB & Merch (fabb_merch.html) --- */
    /* Aggiungere <body class="fabb-merch-page"> in fabb_merch.html */
-   
+
    body.fabb-merch-page {
        text-align: center; /* Centra tutto il testo */
    }
    body.fabb-merch-page main {
        text-align: center; /* Assicura centratura anche nel main */
    }
-   
+
    /* Sfondi per sezioni FABB & Merch */
    .fabb-merch-page .fabb-section,
    .fabb-merch-page .merch-section {
@@ -1117,35 +1179,124 @@
        position: relative; /* CORRETTO: Usa 'relative' */
        z-index: 2;
    }
-   
+
+   /* Stili per il WIP nell'header della pagina FABB & Merch */
+   .fabb-merch-page .header-wip {
+       display: inline-flex; /* Per adattarsi al contenuto e permettere centratura */
+       align-items: center; /* Allinea verticalmente icona e testo */
+       justify-content: center; /* Centra il blocco WIP */
+       /* margin-bottom: 1.5em; */ /* Rimosso o commentato, gestito dal gap */
+       padding: 0.5em 1em; /* Padding interno */
+       background-color: var(--colore-sfondo-wip); /* Sfondo giallo molto trasparente */
+       border: 1px solid var(--colore-primario); /* Bordo giallo */
+       border-radius: 20px; /* Angoli arrotondati */
+       max-width: 90%; /* Limita larghezza */
+       animation: pulse-wip 2s infinite; /* Nome animazione, durata, ripetizione infinita */
+       transform-origin: center; /* Assicura che scali dal centro */
+       /* Assicurati che NON ci sia 'position: absolute;' qui */
+       z-index: 5; /* Un valore z-index basso o assente va bene qui */
+   }
+   .fabb-merch-page .header-wip-icon {
+       width: 20px; /* Dimensione icona CORRETTA */
+       height: auto; /* Altezza automatica CORRETTA */
+       margin-right: 0.8em; /* Spazio tra icona e testo */
+       opacity: 0.9;
+       vertical-align: middle; /* Allinea verticalmente */
+   }
+   .fabb-merch-page .header-wip-text {
+       color: var(--colore-primario); /* Colore testo giallo */
+       font-weight: bold;
+       font-size: 1.1em;
+   }
+   /* Keyframes per l'animazione pulsante WIP */
+   @keyframes pulse-wip {
+       0% {
+           transform: scale(1);
+           box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); /* Ombra gialla trasparente */
+       }
+       70% {
+           transform: scale(1.03); /* Leggero ingrandimento */
+           box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); /* Ombra che svanisce */
+       }
+       100% {
+           transform: scale(1);
+           box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+       }
+   }
+
+   /* --- Layout per Hero Content in fabb_merch.html (CORRETTO) --- */
+   .fabb-merch-page .hero-content {
+       display: flex;
+       flex-direction: column; /* Mette gli elementi in colonna */
+       align-items: center;   /* Centra gli elementi orizzontalmente */
+       gap: 1.5em;            /* Aggiunge spazio verticale TRA gli elementi (WIP, titolo, paragrafo) */
+   }
+   /* Opzionale: Rimuovi margini predefiniti da titolo/paragrafo se il gap è sufficiente */
+   .fabb-merch-page .hero-title {
+       margin-bottom: 0;
+   }
+   .fabb-merch-page .hero-subtitle {
+       margin-bottom: 0;
+   }
+
    /* Lista download FABB */
    .fabb-merch-page .fabb-download-list ul {
-       padding-left: 0; /* Rimuove padding */
+       list-style: none;
+       padding-left: 0;
+       margin-top: 20px;
        display: inline-block; /* Permette centratura */
        text-align: left; /* Testo allineato a sinistra */
    }
    .fabb-merch-page .fabb-download-list li {
-       margin-bottom: 10px;
+       margin-bottom: 12px; /* Spazio tra gli elementi della lista */
+       border-bottom: 1px dashed #eee; /* Separatore leggero */
+       padding-bottom: 12px;
+   }
+   .fabb-merch-page .fabb-download-list li:last-child {
+       border-bottom: none; /* Rimuove il bordo dall'ultimo elemento */
    }
    .fabb-merch-page .fabb-download-list a {
-       color: var(--colore-link-azzurro);
+       color: var(--colore-link-azzurro); /* Colore link o il tuo primario */
+       text-decoration: none;
+       font-weight: 500;
+       transition: color 0.2s ease;
+       display: inline-flex; /* Permette allineamento con icona */
+       align-items: center; /* Allinea verticalmente testo e icona */
    }
    .fabb-merch-page .fabb-download-list a:hover {
        color: var(--colore-primario);
        text-decoration: underline;
    }
-   
+   /* Aggiunge l'icona PDF prima del link */
+   .fabb-merch-page .fabb-download-list a::before {
+       font-family: 'Font Awesome 6 Free';
+       font-weight: 900; /* Solid style */
+       content: '\f1c1'; /* Codice Unicode per fa-file-pdf */
+       margin-right: 10px; /* Spazio tra icona e testo */
+       font-size: 1.1em; /* Dimensione icona */
+       color: var(--colore-pdf-icon); /* Colore rosso per PDF */
+   }
+
    /* Video Container */
    .fabb-merch-page .video-container {
-       margin-bottom: 30px;
-       /* Iframe è inline-block, centratura ereditata da body */
+       max-width: 800px; /* Larghezza massima del video */
+       margin: 30px auto; /* Centra orizzontalmente con margine sopra/sotto */
+       position: relative;
+       padding-bottom: 56.25%; /* Proporzioni 16:9 */
+       height: 0;
+       overflow: hidden;
    }
    .fabb-merch-page .video-container iframe {
-       max-width: 100%; /* Responsivo */
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       border: 0; /* Rimuove bordo iframe */
        border-radius: 8px; /* Angoli arrotondati */
        box-shadow: var(--ombra-box-leggera);
    }
-   
+
    /* Griglia Merchandise */
    .fabb-merch-page .merch-grid {
        display: grid;
@@ -1162,73 +1313,99 @@
    }
    .fabb-merch-page .merch-item {
        text-align: center;
-       /* Stili opzionali per item */
-       /* background-color: rgba(0,0,0,0.2); */
-       /* padding: 15px; */
-       /* border-radius: 8px; */
    }
    .fabb-merch-page .merch-item img {
+       width: 100%; /* Immagine occupa tutta la larghezza della colonna */
+       height: auto; /* Mantiene le proporzioni */
+       display: block; /* Rimuove spazio extra sotto l'immagine */
+       border-radius: 5px; /* Angoli leggermente arrotondati */
+       box-shadow: var(--ombra-box-leggera); /* Ombra leggera */
        margin: 0 auto 10px auto; /* Centra e spazio sotto */
-       border-radius: 4px;
-       box-shadow: var(--ombra-box-leggera);
    }
-   
-   /* ==========================================================================
-      6. Sezione Social Feeds (Home)
-      ========================================================================== */
-   
+
+/* ==========================================================================
+   6. Sezione Social Feeds (Home) - Stile aggiornato
+   ========================================================================== */
+
    .social-feeds-section {
-       background-color: transparent;
+       background-color: transparent; /* Mantenuto trasparente */
        border-left: none;
        animation: none;
        box-shadow: none;
        padding-top: 1em;
+       padding-bottom: 30px; /* Aggiunto padding inferiore */
    }
+
    .social-feeds-container {
-       display: flex;
-       justify-content: space-around;
-       align-items: stretch;
-       flex-wrap: wrap;
-       gap: 2em;
-       margin-top: 1.5em;
+       display: flex; /* Usa flexbox per affiancare i feed */
+       flex-wrap: wrap; /* Permette ai feed di andare a capo su schermi piccoli */
+       gap: 30px; /* Spazio tra i box dei feed */
+       justify-content: center; /* Centra i box se c'è spazio extra */
+       max-width: 1200px; /* Limita larghezza massima */
+       margin: 1.5em auto 0 auto; /* Centra il contenitore nella pagina, margine sopra */
+       padding: 0 15px; /* Padding laterale */
    }
+
    .feed-box {
-       flex: 1 1 400px;
-       max-width: 45%;
-       aspect-ratio: 1 / 1; /* Mantiene quadrato */
-       background-color: var(--colore-sfondo-elemento-chiaro);
-       border-radius: 10px;
-       padding: 1.5em;
-       box-shadow: var(--ombra-box-media);
-       display: flex;
-       flex-direction: column;
-       overflow: hidden; /* Nasconde contenuto extra */
+       background: var(--colore-sfondo-social-box); /* Usa variabile per sfondo (gradiente o colore) */
+       border: 1px solid var(--colore-bordo-social-box); /* Usa variabile per bordo */
+       border-radius: 8px; /* Angoli arrotondati */
+       padding: 20px; /* Padding interno */
+       box-shadow: var(--ombra-social-box); /* Ombra molto leggera */
+       flex-basis: 400px; /* Larghezza base desiderata */
+       flex-grow: 1; /* Permette ai box di crescere per riempire lo spazio */
+       max-width: 500px; /* Limita la larghezza massima di un singolo box */
+       min-width: 300px; /* Larghezza minima prima di andare a capo */
+       display: flex; /* Usa flexbox per layout interno */
+       flex-direction: column; /* Contenuto in colonna */
+       overflow: hidden; /* Nasconde eventuale contenuto che esce dal box */
        transition: transform 0.3s ease, box-shadow 0.3s ease;
    }
+
    .feed-box:hover {
        transform: translateY(-5px);
-       box-shadow: var(--ombra-box-forte);
+       box-shadow: var(--ombra-box-media); /* Ombra più forte su hover */
    }
+
    .feed-box h3 {
        color: var(--colore-primario);
        margin-top: 0;
-       margin-bottom: 1em;
+       margin-bottom: 15px;
        text-align: center;
        font-size: 1.6em;
        border-bottom: 2px solid var(--colore-quaternario);
        padding-bottom: 0.5em;
-       flex-shrink: 0;
+       flex-shrink: 0; /* Impedisce al titolo di restringersi */
    }
-   .feed-box h3 i { margin-right: 0.5em; }
+
+   .feed-box h3 i { /* Stile per le icone nel titolo */
+       margin-right: 8px;
+       color: #555; /* Colore icona generico */
+   }
+
+   /* Stili specifici per icone social */
+   .facebook-feed h3 i {
+       color: var(--colore-facebook-icon); /* Blu Facebook */
+   }
+   .instagram-feed h3 i {
+       /* Gradiente Instagram */
+       background: radial-gradient(circle at 30% 107%, var(--colore-instagram-icon-start) 0%, var(--colore-instagram-icon-start) 5%, var(--colore-instagram-icon-mid1) 45%, var(--colore-instagram-icon-mid2) 60%, var(--colore-instagram-icon-end) 90%);
+       -webkit-background-clip: text;
+       background-clip: text;
+       color: transparent;
+   }
+
    .feed-content {
-       flex-grow: 1;
-       overflow: hidden;
-       position: relative;
-       display: flex; /* Per centrare iframe */
+       flex-grow: 1; /* Occupa lo spazio rimanente */
+       overflow: hidden; /* Nasconde overflow del widget */
+       position: relative; /* Per posizionare placeholder */
+       display: flex; /* Per centrare widget */
        justify-content: center;
        align-items: center;
+       min-height: 300px; /* Altezza minima per dare spazio ai widget */
    }
-   /* Placeholder text */
+
+   /* Placeholder text (se i widget non caricano) */
    .feed-content p {
        text-align: center;
        color: var(--colore-terziario);
@@ -1237,41 +1414,51 @@
        transform: translate(-50%, -50%);
        width: 90%;
        z-index: 1; /* Sopra iframe se non carica */
+       padding: 10px;
+       background: rgba(255,255,255,0.8); /* Sfondo per leggibilità */
+       border-radius: 5px;
    }
-   .feed-content p a { color: var(--colore-link-footer); font-weight: bold; }
-   .feed-content p a:hover { color: var(--colore-link-footer-hover); }
-   
-   /* Stili per iframe Facebook (centrato con flex) */
-   .facebook-feed .feed-content .fb-page,
-   .facebook-feed .feed-content .fb-page iframe {
-       max-width: 100%;
-       max-height: 100%; /* Limita altezza al contenitore */
-       border: none;
-       visibility: visible;
-       z-index: 0; /* Sotto placeholder */
-       display: block; /* Necessario per flex */
+   .feed-content p a { color: var(--colore-link-standard); font-weight: bold; }
+   .feed-content p a:hover { color: var(--colore-link-standard-hover); }
+
+   /* Assicura che il contenuto del feed (iframe/widget) si adatti */
+   .feed-content .fb-page,
+   .feed-content .fb-page iframe,
+   .feed-content .lightwidget-widget {
+       width: 100% !important; /* Forza la larghezza al 100% del contenitore */
+       height: 100% !important; /* Forza altezza al 100% */
+       border: none !important; /* Rimuove eventuali bordi dell'iframe */
+       display: block; /* Assicura che occupi lo spazio */
+       position: relative; /* Per essere sopra il placeholder se caricato */
+       z-index: 2;
    }
-   
-   /* ==========================================================================
-      7. Utilità
-      ========================================================================== */
-   
+   /* Altezza minima specifica per Lightwidget se necessario */
+   .lightwidget-widget {
+       min-height: 400px;
+   }
+
+/* ==========================================================================
+   7. Utilità
+   ========================================================================== */
+
    .text-center { text-align: center; }
-   
-   /* ==========================================================================
-      8. Media Queries (Responsività)
-      ========================================================================== */
-   
+
+/* ==========================================================================
+   8. Media Queries (Responsività)
+   ========================================================================== */
+
    @media (max-width: 900px) {
        /* Social Feeds */
        .feed-box {
-           flex-basis: 80%;
+           flex-basis: 80%; /* Occupa più larghezza */
            max-width: 80%;
            margin-left: auto;
            margin-right: auto;
+           /* Rimuovi aspect-ratio se presente */
+           /* aspect-ratio: auto; */
        }
    }
-   
+
    @media (max-width: 768px) {
        /* --- Layout Base --- */
        .navbar {
@@ -1280,40 +1467,43 @@
        }
        .navbar-logo {
            position: static; transform: none;
-           font-size: 1.8em; margin-right: auto;
+           /* Rimosso font-size per usare altezza immagine */
+           margin-right: auto;
        }
        .navbar-logo img { height: 40px; }
        .navbar-links { display: none; }
        .menu-toggle {
            display: flex; position: static; transform: none;
            margin-left: 1em;
+           right: 1.5em; /* Allinea con padding */
        }
-   
+
        .hero { padding: 6em 1.5em; }
        .hero-title { font-size: 2.8em; }
        .hero-subtitle { font-size: 1.4em; }
-   
+
        .section { padding: 2.5em 1.5em; border-left-width: 6px; }
        .section-title { font-size: 2.2em; }
-   
+
        .contact-social { flex-direction: column; text-align: center; padding: 2.5em 1.5em; }
        .contact-info { margin-right: 0; margin-bottom: 2em; }
        .social-links { margin-top: 1em; }
        .social-links a { font-size: 2em; margin: 0 0.8em; }
-   
+
        /* --- Specifici per Pagina --- */
        /* Gilda */
        .league-logos { justify-content: center; gap: 1.5em; }
        .league-logos img { max-width: 120px; max-height: 80px; }
-   
+
        /* Chi Siamo */
        .member-grid { grid-template-columns: 1fr; } /* Una colonna */
        .member-card img { width: 120px; height: 120px; }
-   
+       .member-card { padding: 15px; } /* Meno padding su mobile */
+
        /* Roccageddon (index) */
        .roccageddon-info { padding: 2em 1.5em; }
        .roccageddon-info img { max-width: 30%; }
-   
+
        /* Roccageddon (Pagina) */
        body.roccageddon-page .sezione-intro,
        #roccageddon-2024,
@@ -1322,96 +1512,66 @@
        #roccageddon-2024 h2,
        #roccageddon-2025 h2 { font-size: 1.8em; }
        .classifica-immagine { max-width: 100%; }
-   
+
        /* Galleria Roccageddon */
-       .galleria-foto { max-width: 100%; }
+       .galleria-foto { max-width: 100%; padding: 10px; }
        .galleria-foto img { max-height: 250px; }
-       .slick-prev, .slick-next { width: 25px; height: 25px; }
-       .slick-prev { left: 5px; } .slick-next { right: 5px; }
-       .slick-prev:before, .slick-next:before { font-size: 14px; }
-   
+       /* Frecce Slick su mobile */
+       .galleria-foto .slick-prev {
+           left: 5px; /* Avvicina le frecce */
+       }
+       .galleria-foto .slick-next {
+           right: 5px; /* Avvicina le frecce */
+       }
+       .galleria-foto .slick-prev,
+       .galleria-foto .slick-next {
+           width: 30px;
+           height: 30px;
+       }
+       .galleria-foto .slick-prev::before,
+       .galleria-foto .slick-next::before {
+           font-size: 14px;
+       }
+
        /* News (index) */
        body.index .index-news-section { padding: 1.5em; }
-   
+
        /* FABB & Merch */
        .fabb-merch-page .merch-grid.two-items {
            grid-template-columns: 1fr; /* Una colonna su mobile */
            max-width: 90%;
        }
-   
+       .fabb-merch-page .header-wip-icon { width: 20px; height: 20px; } /* Icona WIP più piccola */
+       .fabb-merch-page .header-wip-text { font-size: 1em; }
+
    } /* Chiusura @media (max-width: 768px) */
-   
-   
+
+
    /* Media Query specifica per la lista news con thumbnail su schermi piccoli */
    @media (max-width: 600px) {
        /* Selettore più specifico per evitare conflitti */
-       .news-list li.has-thumbnail {
+       body.news .news-list li.has-thumbnail {
            flex-direction: column;
            align-items: center;
            text-align: center;
        }
-       .news-thumbnail {
+       body.news .news-thumbnail {
            max-width: 250px;
            margin-right: 0;
            margin-bottom: 1em;
        }
-       .news-content { width: 100%; }
-   
+       body.news .news-content { width: 100%; }
+
        /* Social Feeds su mobile */
        .feed-box {
-           flex-basis: 95%;
+           flex-basis: 95%; /* Quasi tutta larghezza */
            max-width: 95%;
+           min-width: unset; /* Rimuove min-width */
            /* Rimuovi aspect-ratio se il contenuto è troppo */
            /* aspect-ratio: auto; */
            /* height: 400px; */ /* O altezza fissa */
        }
        .feed-box h3 { font-size: 1.4em; }
-   
+
    } /* Chiusura @media (max-width: 600px) */
-   
-   /* Stili per il WIP nell'header della pagina FABB & Merch */
-.fabb-merch-page .header-wip {
-    display: flex; /* Mette icona e testo sulla stessa riga */
-    align-items: center; /* Allinea verticalmente icona e testo */
-    justify-content: center; /* Centra il blocco WIP */
-    margin-bottom: 1.5em; /* Spazio sotto il WIP, prima del titolo */
-    padding: 0.5em 1em; /* Padding interno */
-    background-color: rgba(255, 193, 7, 0.2); /* Sfondo giallo molto trasparente */
-    border: 1px solid var(--colore-primario); /* Bordo giallo */
-    border-radius: 20px; /* Angoli arrotondati */
-    display: inline-flex; /* Per adattarsi al contenuto e permettere centratura */
-    max-width: 90%; /* Limita larghezza */
-    /* Aggiunta animazione */
-    animation: pulse-wip 2s infinite; /* Nome animazione, durata, ripetizione infinita */
-    transform-origin: center; /* Assicura che scali dal centro */
-    
-}
 
-.fabb-merch-page .header-wip-icon {
-    width: 150px; /* Dimensione icona */
-    height: 150px;
-    margin-right: 0.8em; /* Spazio tra icona e testo */
-    opacity: 0.9;
-}
-
-.fabb-merch-page .header-wip-text {
-    color: var(--colore-primario); /* Colore testo giallo */
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-/* Keyframes per l'animazione pulsante */
-@keyframes pulse-wip {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); /* Ombra gialla trasparente */
-    }
-    70% {
-        transform: scale(1.03); /* Leggero ingrandimento */
-        box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); /* Ombra che svanisce */
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
-    }
-}
