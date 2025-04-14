@@ -148,12 +148,12 @@
         // --- Generazione dinamica immagini 2025 (invariato) ---
         const galleria2025 = $('#galleria-2025');
         const basePath2025 = 'img roccageddon/Foto 2025/';
-        const numeroFoto2025 = 15;
+        const numeroFoto2025 = 153;
         const nomeBaseFoto2025 = 'Roccageddon_2025-';
         const estensioneFoto2025 = '.jpg';
         if (galleria2025.length) {
             for (let i = 1; i <= numeroFoto2025; i++) {
-                const numeroFormattato2025 = i.toString().padStart(2, '0');
+                const numeroFormattato2025 = i.toString().padStart(3, '0');
                 const nomeFile2025 = nomeBaseFoto2025 + numeroFormattato2025 + estensioneFoto2025;
                 const altText2025 = `Foto Roccageddon 2025 - ${numeroFormattato2025}`;
                 const imageHtml2025 = `<div><img src="${basePath2025}${nomeFile2025}" alt="${altText2025}" loading="lazy"></div>`;
