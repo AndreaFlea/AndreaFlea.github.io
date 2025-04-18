@@ -450,17 +450,18 @@
 
    /* Sezione News nella Home */
    body.index .index-news-section { /* Selettore per la section */
-       background-color: transparent;
-       border-left: none;
-       animation: none;
-       box-shadow: none;
-       padding: 1.5em; /* Padding ridotto */
-       margin-bottom: 2em;
-       position: relative; /* Per ::before */
-       z-index: 1;
-       border-radius: 10px;
-       overflow: hidden;
-   }
+    background-color: transparent;
+    border-left: 8px solid var(--colore-primario); /* <-- RIPRISTINA IL BORDO SINISTRO */
+    animation: none;
+    box-shadow: none;
+    padding: 1.5em; /* Padding ridotto */
+    margin-bottom: 2em;
+    position: relative; /* Per ::before */
+    z-index: 1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
    body.index .index-news-section::before { /* Sfondo specifico */
        content: '';
        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
