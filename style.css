@@ -1199,7 +1199,7 @@
        z-index: 5; /* Un valore z-index basso o assente va bene qui */
    }
    .fabb-merch-page .header-wip-icon {
-       width: 20px; /* Dimensione icona CORRETTA */
+       width: 60px; /* Dimensione icona CORRETTA */
        height: auto; /* Altezza automatica CORRETTA */
        margin-right: 0.8em; /* Spazio tra icona e testo */
        opacity: 0.9;
@@ -1208,7 +1208,7 @@
    .fabb-merch-page .header-wip-text {
        color: var(--colore-primario); /* Colore testo giallo */
        font-weight: bold;
-       font-size: 1.1em;
+       font-size: 1.3em;
    }
    /* Keyframes per l'animazione pulsante WIP */
    @keyframes pulse-wip {
@@ -1577,3 +1577,18 @@
 
    } /* Chiusura @media (max-width: 600px) */
 
+/* Assicura che gli elementi dentro .header-wip siano impilati verticalmente */
+.header-wip {
+    display: flex; /* Usa flexbox per un controllo facile */
+    flex-direction: column; /* Impila gli elementi in colonna */
+    align-items: center; /* Centra gli elementi orizzontalmente (opzionale) */
+    text-align: center; /* Centra il testo dentro gli elementi (opzionale) */
+}
+
+/* Aggiungi un po' di spazio tra gli elementi se necessario */
+.header-wip > * { /* Seleziona tutti i figli diretti di .header-wip */
+    margin-bottom: 10px; /* Aggiunge spazio sotto ogni elemento */
+}
+.header-wip > *:last-child { /* Rimuove lo spazio dall'ultimo elemento */
+    margin-bottom: 0;
+}
